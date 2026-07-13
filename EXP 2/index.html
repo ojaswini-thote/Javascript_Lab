@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Billing Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1 {
+            text-align: center;
+            color: pink;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: pink;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: pink;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+
+        #output {
+            background-color: lightpink;
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Billing Calculator</h1>
+
+        <label>Customer Name:</label><br>
+        <input type="text" id="name"><br>
+
+        <label>Product Name:</label><br>
+        <input type="text" id="product"><br>
+
+        <label>Price per Item:</label><br>
+        <input type="number" id="price"><br>
+
+        <label>Quantity:</label><br>
+        <input type="number" id="quantity"><br>
+
+        <label>Customer Phone:</label><br>
+<input type="tel" id="phone"><br><br>
+
+
+<label>Payment Method:</label><br>
+<select id="payment">
+    <option>Cash</option>
+    <option>Card</option>
+    <option>UPI</option>
+</select><br><br>
+
+        
+        <button onclick="calculateBill()">
+            Generate Bill
+        </button>
+
+        <hr>
+
+        <div id="output"></div>
+
+    </div>
+
+    <script src="script1.js"></script>
+
+</body>
+</html>
