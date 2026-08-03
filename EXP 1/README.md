@@ -267,6 +267,8 @@ function greet() {
 
 ---
 
+<img width="1470" height="956" alt="11" src="https://github.com/user-attachments/assets/27d1ab43-29ef-4da1-948c-a75cd0ad70d2" />
+
 # Case Study Description
 
 This practical demonstrates the implementation of all three methods of including JavaScript within a single web application.
