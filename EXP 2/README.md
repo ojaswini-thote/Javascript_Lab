@@ -725,7 +725,284 @@ The browser console displays billing information for verification.
 
 **Billing Calculator Web Application Using JavaScript, HTML and CSS**
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopEasy - Online Shopping</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+header{
+    background:#0077cc;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:30px auto;
+}
+
+.section{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.2);
+}
+
+.section h2{
+    color:#0077cc;
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-top:12px;
+    font-weight:bold;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:#0077cc;
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+.qty{
+    width:70px;
+    text-align:center;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    background:#28a745;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1e7e34;
+}
+
+#bill{
+    display:none;
+    background:#eef8ee;
+    padding:20px;
+    border-radius:10px;
+}
+
+#bill table{
+    margin-top:15px;
+}
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🛒 Online Shopping</h1>
+
+</header>
+
+<div class="container">
+
+<div class="section">
+
+<h2>Customer Details</h2>
+
+<label>Name</label>
+<input type="text" id="name" placeholder="Enter Customer Name">
+
+<label>Phone Number</label>
+<input type="text" id="phone" placeholder="Enter Phone Number">
+
+<label>Prime Member</label>
+
+<select id="member">
+<option value="true">Yes</option>
+<option value="false">No</option>
+</select>
+
+</div>
+
+<div class="section">
+
+<h2>Products</h2>
+
+<table>
+
+<tr>
+<th>Product</th>
+<th>Price (₹)</th>
+<th>Quantity</th>
+</tr>
+
+<tr>
+<td>Laptop</td>
+<td>50000</td>
+<td><input type="number" class="qty" data-product="Laptop" data-price="50000" value="0" min="0"></td>
+</tr>
+
+<tr>
+<td>Smartphone</td>
+<td>25000</td>
+<td><input type="number" class="qty" data-product="Smartphone" data-price="25000" value="0" min="0"></td>
+</tr>
+
+<tr>
+<td>Tablet</td>
+<td>18000</td>
+<td><input type="number" class="qty" data-product="Tablet" data-price="18000" value="0" min="0"></td>
+</tr>
+
+<tr>
+<td>Smart Watch</td>
+<td>5000</td>
+<td><input type="number" class="qty" data-product="Smart Watch" data-price="5000" value="0" min="0"></td>
+</tr>
+
+<tr>
+<td>Headphones</td>
+<td>2000</td>
+<td><input type="number" class="qty" data-product="Headphones" data-price="2000" value="0" min="0"></td>
+</tr>
+
+<tr>
+<td>Bluetooth Speaker</td>
+<td>3500</td>
+<td><input type="number" class="qty" data-product="Bluetooth Speaker" data-price="3500" value="0" min="0"></td>
+</tr>
+
+<tr>
+<td>Keyboard</td>
+<td>1500</td>
+<td><input type="number" class="qty" data-product="Keyboard" data-price="1500" value="0" min="0"></td>
+</tr>
+
+<tr>
+<td>Mouse</td>
+<td>700</td>
+<td><input type="number" class="qty" data-product="Mouse" data-price="700" value="0" min="0"></td>
+</tr>
+
+<tr>
+<td>USB Drive</td>
+<td>800</td>
+<td><input type="number" class="qty" data-product="USB Drive" data-price="800" value="0" min="0"></td>
+</tr>
+
+<tr>
+<td>Power Bank</td>
+<td>1200</td>
+<td><input type="number" class="qty" data-product="Power Bank" data-price="1200" value="0" min="0"></td>
+</tr>
+
+</table>
+
+<button onclick="generateBill()">
+🧾 Generate Bill
+</button>
+
+</div>
+
+<div class="section">
+
+<div id="bill">
+
+<h2>Bill Receipt</h2>
+
+<p><strong>Customer:</strong> <span id="customer"></span></p>
+<p><strong>Phone:</strong> <span id="mobile"></span></p>
+<p><strong>Prime Member:</strong> <span id="prime"></span></p>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Qty</th>
+<th>Total</th>
+</tr>
+
+</thead>
+
+<tbody id="billItems">
+
+</tbody>
+
+</table>
+
+<h3 id="subtotal"></h3>
+<h3 id="gst"></h3>
+<h2 id="grandTotal"></h2>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script src="script2.js"></script>
+
+</body>
+</html>
+```
 ---
+<img width="1470" height="956" alt="12" src="https://github.com/user-attachments/assets/5b7e5552-cb28-48a7-9f02-295643d24049" />
 
 # Case Study Program Code
 
