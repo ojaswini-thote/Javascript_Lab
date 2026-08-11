@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart Total Calculator</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#ffe6f2;
+    padding:30px;
+}
+
+.container{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    padding:30px;
+}
+
+h1{
+    text-align:center;
+    color:#d63384;
+    margin-bottom:30px;
+}
+
+.main{
+    display:flex;
+    gap:30px;
+    align-items:flex-start;
+}
+
+.left{
+    flex:1;
+}
+
+.right{
+    flex:1;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#ff4d94;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#e60073;
+}
+
+.right h2{
+    color:#d63384;
+    margin-bottom:15px;
+}
+
+.product{
+    background:#fff0f6;
+    border-left:5px solid #ff4d94;
+    padding:12px;
+    margin-bottom:12px;
+    border-radius:8px;
+    line-height:1.7;
+}
+
+#result{
+    margin-top:30px;
+    background:#ffeaf3;
+    padding:20px;
+    border-radius:10px;
+    font-size:18px;
+    line-height:1.8;
+    font-weight:bold;
+}
+
+hr{
+    margin:12px 0;
+}
+
+@media(max-width:900px){
+
+.main{
+    flex-direction:column;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>🛒 Shopping Cart Total Calculator</h1>
+
+<div class="main">
+
+<div class="left">
+
+<label>Product Name</label>
+<input type="text" id="productName" placeholder="Enter Product Name">
+
+<label>Price (₹)</label>
+<input type="number" id="price" placeholder="Enter Price">
+
+<label>Quantity</label>
+<input type="number" id="quantity" placeholder="Enter Quantity">
+
+<button onclick="addProduct()">Add Product</button>
+
+<button onclick="calculateBill()">Calculate Total</button>
+
+</div>
+
+<div class="right">
+
+<h2>Products Added</h2>
+
+<div id="productList">
+<p>No products added.</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

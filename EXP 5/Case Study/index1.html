@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Marks Analysis</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:40px;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+}
+
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+h1{
+    text-align:center;
+    color:#0d47a1;
+    margin-bottom:10px;
+    font-size:34px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:35px;
+}
+
+.form-section{
+    background:#f4f8ff;
+    padding:25px;
+    border-radius:15px;
+    border-left:6px solid #1565c0;
+}
+
+.form-section h2{
+    color:#0d47a1;
+    margin-bottom:20px;
+}
+
+.input-row{
+    display:flex;
+    gap:20px;
+}
+
+.input-group{
+    flex:1;
+}
+
+label{
+    display:block;
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:8px;
+    color:#333;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:2px solid #90caf9;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#1565c0;
+    box-shadow:0 0 8px rgba(21,101,192,.25);
+}
+
+button{
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#1976d2,#0d47a1);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 7px 15px rgba(13,71,161,.3);
+}
+
+.add-button{
+    width:100%;
+    margin-top:20px;
+}
+
+.operations{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:20px;
+}
+
+.operations button{
+    width:100%;
+}
+
+.analyze{
+    width:100%;
+    margin-top:20px;
+    background:linear-gradient(135deg,#43a047,#1b5e20);
+}
+
+.students-count{
+    text-align:center;
+    margin-top:20px;
+    color:#555;
+    font-size:16px;
+}
+
+.results{
+    display:flex;
+    gap:25px;
+    margin-top:35px;
+}
+
+.card{
+    flex:1;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+.topper{
+    background:linear-gradient(135deg,#fff8dc,#ffe082);
+}
+
+.lowest{
+    background:linear-gradient(135deg,#ffebee,#ef9a9a);
+}
+
+.icon{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+.card h3{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.card p{
+    font-size:17px;
+    margin:5px 0;
+    color:#444;
+}
+
+.marks{
+    font-size:32px !important;
+    font-weight:bold;
+    margin-top:15px !important;
+}
+
+#message{
+    text-align:center;
+    margin-top:20px;
+    font-weight:bold;
+    color:#1565c0;
+}
+
+@media(max-width:700px){
+
+    body{
+        padding:20px;
+    }
+
+    .container{
+        width:100%;
+        padding:25px;
+    }
+
+    .input-row{
+        flex-direction:column;
+    }
+
+    .operations{
+        grid-template-columns:1fr;
+    }
+
+    .results{
+        flex-direction:column;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>Student Marks Analysis</h1>
+
+    <p class="subtitle">
+        Student Performance using Arrays, Objects and Array Methods
+    </p>
+
+
+    <div class="form-section">
+
+        <h2>Enter Student Details</h2>
+
+
+        <div class="input-row">
+
+            <div class="input-group">
+
+                <label for="name">
+                    Student Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter student name"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="prn">
+                    PRN
+                </label>
+
+                <input
+                    type="text"
+                    id="prn"
+                    placeholder="Enter PRN"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="marks">
+                    Marks
+                </label>
+
+                <input
+                    type="number"
+                    id="marks"
+                    placeholder="Enter marks"
+                    min="0"
+                    max="100"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- PUSH -->
+
+        <button class="add-button" onclick="addStudent()">
+            Add Student (push)
+        </button>
+
+
+        <!-- POP, UNSHIFT, SHIFT -->
+
+        <div class="operations">
+
+            <button onclick="removeLastStudent()">
+                Remove Last Student (pop)
+            </button>
+
+            <button onclick="removeFirstStudent()">
+                Remove First Student (shift)
+            </button>
+
+            <button onclick="addFirstStudent()">
+                Add Student at Beginning (unshift)
+            </button>
+
+            <button onclick="showCurrentArray()">
+                Check Array in Console
+            </button>
+
+        </div>
+
+
+        <button class="analyze" onclick="analyzeStudents()">
+            Analyze Student Performance
+        </button>
+
+
+        <div class="students-count" id="studentCount">
+            No students added yet.
+        </div>
+
+    </div>
+
+
+    <!-- FINAL RESULTS ONLY -->
+
+    <div class="results">
+
+        <div class="card topper">
+
+            <div class="icon">🏆</div>
+
+            <h2>Topper</h2>
+
+            <h3 id="topperName">---</h3>
+
+            <p id="topperPRN">
+                PRN: ---
+            </p>
+
+            <p class="marks" id="topperMarks">
+                --- Marks
+            </p>
+
+        </div>
+
+
+        <div class="card lowest">
+
+            <div class="icon">📉</div>
+
+            <h2>Lowest Marks</h2>
+
+            <h3 id="lowestName">---</h3>
+
+            <p id="lowestPRN">
+                PRN: ---
+            </p>
+
+            <p class="marks" id="lowestMarks">
+                --- Marks
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div id="message"></div>
+
+</div>
+
+
+<script src="script1.js"></script>
+
+</body>
+
+</html>
