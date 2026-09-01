@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>String Processing Application</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eee7f7;
+            color: #3f3651;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #d9ccea;
+            box-shadow: 0 6px 20px rgba(80, 60, 110, 0.12);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0 0 8px;
+            color: #5b4678;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #817493;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .input-section {
+            background: #f6f1fb;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e0d6ed;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #59466f;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 14px;
+            border: 1px solid #cfc1df;
+            border-radius: 7px;
+            background: #ffffff;
+            color: #3f3651;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #9b7fc2;
+            box-shadow: 0 0 0 3px rgba(155, 127, 194, 0.15);
+        }
+
+        textarea::placeholder {
+            color: #9b91a8;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 13px;
+            border: none;
+            border-radius: 7px;
+            background: #8b6bb1;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background: #76589b;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        h2 {
+            margin-bottom: 18px;
+            color: #5b4678;
+            font-size: 23px;
+            border-bottom: 2px solid #c7b4dc;
+            padding-bottom: 8px;
+        }
+
+        .result-card {
+            background: #faf8fd;
+            border: 1px solid #e1d8ec;
+            border-left: 4px solid #9b7fc2;
+            border-radius: 7px;
+            padding: 16px 18px;
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+
+        .result-card strong {
+            color: #5b4678;
+        }
+
+        .result-value {
+            margin-top: 5px;
+            color: #514761;
+            word-wrap: break-word;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                width: 95%;
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .input-section {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>String Processing Application</h1>
+
+        <p class="subtitle">
+            Reverse a string and count words and vowels
+        </p>
+
+        <div class="input-section">
+
+            <label for="paragraph">
+                Enter String / Paragraph:
+            </label>
+
+            <textarea
+                id="paragraph"
+                placeholder="Enter your string or paragraph here..."
+            ></textarea>
+
+            <button id="processButton">
+                Process String
+            </button>
+
+        </div>
+
+        <div class="results">
+
+            <h2>Results</h2>
+
+            <div id="result"></div>
+
+        </div>
+
+    </div>
+
+    <script src="script2.js"></script>
+
+</body>
+
+</html>
