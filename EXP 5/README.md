@@ -7,7 +7,7 @@
 
 ## Experiment Title
 
-**Apply Array Methods and Object Handling in JavaScript**
+**Apply array methods and object handling; create a cart total calculator with discount logic. **
 
 ---
 
@@ -28,7 +28,7 @@ Demonstrate JavaScript array methods — `forEach`, `map`, `filter`, and `reduce
 
 ## File Path
 
-`Task5/5.1/index.html`
+`file:///Users/ojaswinithote/Desktop/Javascript/EXP%205/Practical/index.html`
 
 ## Program Code
 
@@ -38,222 +38,166 @@ Demonstrate JavaScript array methods — `forEach`, `map`, `filter`, and `reduce
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart Total Calculator</title>
 
-    <title>Shopping Cart</title>
+<style>
 
-    <style>
-        body {
-            font-family: Arial;
-            background: #f2f2f2;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-        .container {
-            width: 800px;
-            margin: 30px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px gray;
-        }
+body{
+    background:#ffe6f2;
+    padding:30px;
+}
 
-        input {
-            padding: 8px;
-            width: 150px;
-            margin: 5px;
-        }
+.container{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    padding:30px;
+}
 
-        button {
-            padding: 10px;
-            cursor: pointer;
-        }
+h1{
+    text-align:center;
+    color:#d63384;
+    margin-bottom:30px;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+.main{
+    display:flex;
+    gap:30px;
+    align-items:flex-start;
+}
 
-        table, th, td {
-            border: 1px solid black;
-        }
+.left{
+    flex:1;
+}
 
-        th {
-            background: #007bff;
-            color: white;
-        }
+.right{
+    flex:1;
+}
 
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
 
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-        }
-    </style>
+input{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#ff4d94;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#e60073;
+}
+
+.right h2{
+    color:#d63384;
+    margin-bottom:15px;
+}
+
+.product{
+    background:#fff0f6;
+    border-left:5px solid #ff4d94;
+    padding:12px;
+    margin-bottom:12px;
+    border-radius:8px;
+    line-height:1.7;
+}
+
+#result{
+    margin-top:30px;
+    background:#ffeaf3;
+    padding:20px;
+    border-radius:10px;
+    font-size:18px;
+    line-height:1.8;
+    font-weight:bold;
+}
+
+hr{
+    margin:12px 0;
+}
+
+@media(max-width:900px){
+
+.main{
+    flex-direction:column;
+}
+
+}
+
+</style>
+
 </head>
-
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h2>Shopping Cart Calculator</h2>
+<h1>🛒 Shopping Cart Total Calculator</h1>
 
-        <input type="text" id="name" placeholder="Product Name">
-        <input type="number" id="price" placeholder="Price">
-        <input type="number" id="qty" placeholder="Quantity">
+<div class="main">
 
-        <button onclick="addProduct()">Add Product</button>
+<div class="left">
 
-        <table id="cartTable">
-            <tr>
-                <th>ID</th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-            </tr>
-        </table>
+<label>Product Name</label>
+<input type="text" id="productName" placeholder="Enter Product Name">
 
-        <div class="result" id="result">
-            <h3>Item Summary</h3>
-            <ul id="summary"></ul>
+<label>Price (₹)</label>
+<input type="number" id="price" placeholder="Enter Price">
 
-            <h3>Expensive Products (Price > 1000)</h3>
-            <ul id="expensive"></ul>
-        </div>
+<label>Quantity</label>
+<input type="number" id="quantity" placeholder="Enter Quantity">
 
-    </div>
+<button onclick="addProduct()">Add Product</button>
 
-    <script>
+<button onclick="calculateBill()">Calculate Total</button>
 
-        let cart = [];
+</div>
 
-        function addProduct() {
+<div class="right">
 
-            let name = document.getElementById("name").value;
-            let price = parseFloat(document.getElementById("price").value);
-            let qty = parseInt(document.getElementById("qty").value);
+<h2>Products Added</h2>
 
-            if (name == "" || isNaN(price) || isNaN(qty)) {
-                alert("Please enter all fields");
-                return;
-            }
+<div id="productList">
+<p>No products added.</p>
+</div>
 
-            let product = {
-                id: cart.length + 1,
-                name: name,
-                price: price,
-                quantity: qty
-            };
+</div>
 
-            cart.push(product);
+</div>
 
-            displayCart();
+<div id="result"></div>
 
-            document.getElementById("name").value = "";
-            document.getElementById("price").value = "";
-            document.getElementById("qty").value = "";
-        }
+</div>
 
-
-        function displayCart() {
-
-            let table = document.getElementById("cartTable");
-
-            table.innerHTML = `
-                <tr>
-                    <th>ID</th>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-            `;
-
-
-            // forEach — renders each cart item row
-            cart.forEach(function (item) {
-
-                table.innerHTML += `
-                    <tr>
-                        <td>${item.id}</td>
-                        <td>${item.name}</td>
-                        <td>${item.price}</td>
-                        <td>${item.quantity}</td>
-                        <td>${item.price * item.quantity}</td>
-                    </tr>
-                `;
-            });
-
-
-            // reduce — calculates grand total
-            let total = cart.reduce(function (sum, item) {
-                return sum + (item.price * item.quantity);
-            }, 0);
-
-
-            let discount = 0;
-
-            if (total >= 50000)
-                discount = total * 0.20;
-
-            else if (total >= 20000)
-                discount = total * 0.10;
-
-            else if (total >= 5000)
-                discount = total * 0.05;
-
-
-            let finalAmount = total - discount;
-
-
-            document.getElementById("result").innerHTML = `
-                <b>Total Amount :</b> ${total}<br>
-                <b>Discount :</b> ${discount.toFixed(2)}<br>
-                <b>Final Amount :</b> ${finalAmount.toFixed(2)}
-
-                <h3>Item Summary</h3>
-                <ul id="summary"></ul>
-
-                <h3>Expensive Products (Price > 1000)</h3>
-                <ul id="expensive"></ul>
-            `;
-
-
-            // map — builds item summary list
-            let summary = document.getElementById("summary");
-
-            summary.innerHTML = "";
-
-            cart.map(function (item) {
-                summary.innerHTML += `
-                    <li>${item.name} : ${item.price * item.quantity}</li>
-                `;
-            });
-
-
-            // filter — finds products with price > 1000
-            let expensive = document.getElementById("expensive");
-
-            expensive.innerHTML = "";
-
-            let exp = cart.filter(function (item) {
-                return item.price > 1000;
-            });
-
-
-            exp.forEach(function (item) {
-                expensive.innerHTML += `
-                    <li>${item.name}</li>
-                `;
-            });
-        }
-
-    </script>
+<script src="script.js"></script>
 
 </body>
 </html>
@@ -261,6 +205,104 @@ Demonstrate JavaScript array methods — `forEach`, `map`, `filter`, and `reduce
 
 ---
 
+### `Task5/5.1/script.js`
+
+```js
+// Array to store product objects
+const cart = [];
+
+// Add Product
+function addProduct(){
+
+    const name = document.getElementById("productName").value.trim();
+    const price = Number(document.getElementById("price").value);
+    const quantity = Number(document.getElementById("quantity").value);
+
+    if(name==="" || price<=0 || quantity<=0){
+        alert("Please enter valid product details.");
+        return;
+    }
+
+    // Object
+    const product={
+        name:name,
+        price:price,
+        quantity:quantity,
+        total:price*quantity
+    };
+
+    // Array Method
+    cart.push(product);
+
+    displayProducts();
+
+    document.getElementById("productName").value="";
+    document.getElementById("price").value="";
+    document.getElementById("quantity").value="";
+}
+
+// Display Products
+function displayProducts(){
+
+    const productList=document.getElementById("productList");
+
+    productList.innerHTML="";
+
+    cart.forEach(function(item,index){
+
+        productList.innerHTML+=`
+        <div class="product">
+            <strong>${index+1}. ${item.name}</strong><br>
+            Price : ₹${item.price}<br>
+            Quantity : ${item.quantity}<br>
+            Total : ₹${item.total}
+        </div>
+        `;
+
+    });
+
+}
+
+// Calculate Bill
+function calculateBill(){
+
+    if(cart.length===0){
+        alert("Cart is empty.");
+        return;
+    }
+
+    // Array Method - reduce()
+    const cartTotal=cart.reduce(function(sum,item){
+        return sum+item.total;
+    },0);
+
+    let discount=0;
+
+    if(cartTotal>=5000){
+        discount=cartTotal*0.20;
+    }
+    else if(cartTotal>=3000){
+        discount=cartTotal*0.15;
+    }
+    else if(cartTotal>=1000){
+        discount=cartTotal*0.10;
+    }
+
+    const finalAmount=cartTotal-discount;
+
+    document.getElementById("result").innerHTML=`
+        <h2 style="color:#d63384;">Bill Summary</h2>
+        Total Products : ${cart.length}<br>
+        Cart Total : ₹${cartTotal.toFixed(2)}<br>
+        Discount : ₹${discount.toFixed(2)}
+        <hr>
+        Final Amount : ₹${finalAmount.toFixed(2)}
+    `;
+
+}
+```
+
+---
 ## Array Methods Used
 
 | Method      | Purpose                                                       |
@@ -285,8 +327,8 @@ Demonstrate JavaScript array methods — `forEach`, `map`, `filter`, and `reduce
 * Item Summary and Expensive Products lists are updated whenever a new product is added.
 
 ## Screenshot
+![Task 5.1 Output](Practical/41.png)
 
-> **Add your screenshot here showing your Name, PRN, and File Path.**
 
 ---
 
@@ -576,7 +618,7 @@ Minimum Value: 3
 
 ## Screenshot
 
-> **Add your screenshot here showing your Name, PRN, and File Path.**
+![Task 5.2 Output](Case%20Study/48.png)
 
 ---
 
