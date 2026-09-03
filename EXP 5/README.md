@@ -353,138 +353,382 @@ Create an array of objects from user input and find the Maximum and Minimum valu
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Task 5.2 – Max & Min</title>
+<title>Student Marks Analysis</title>
 
-    <style>
+<style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f0f4f8;
-            display: flex;
-            justify-content: center;
-            padding: 40px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
 
-        .box {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            width: 400px;
-        }
+body{
+    min-height:100vh;
+    padding:40px;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+}
 
-        h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
 
-        input {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
+h1{
+    text-align:center;
+    color:#0d47a1;
+    margin-bottom:10px;
+    font-size:34px;
+}
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #4f46e5;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:35px;
+}
 
-        button:hover {
-            background: #4338ca;
-        }
+.form-section{
+    background:#f4f8ff;
+    padding:25px;
+    border-radius:15px;
+    border-left:6px solid #1565c0;
+}
 
-        .result {
-            margin-top: 20px;
-            display: none;
-        }
+.form-section h2{
+    color:#0d47a1;
+    margin-bottom:20px;
+}
 
-        .result p {
-            font-size: 16px;
-            margin: 8px 0;
-            color: #333;
-        }
+.input-row{
+    display:flex;
+    gap:20px;
+}
 
-        .result span {
-            font-weight: bold;
-            color: #4f46e5;
-        }
+.input-group{
+    flex:1;
+}
 
-        .error {
-            color: red;
-            font-size: 14px;
-            margin-top: 8px;
-        }
+label{
+    display:block;
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:8px;
+    color:#333;
+}
 
-    </style>
+input{
+    width:100%;
+    padding:13px;
+    border:2px solid #90caf9;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#1565c0;
+    box-shadow:0 0 8px rgba(21,101,192,.25);
+}
+
+button{
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#1976d2,#0d47a1);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 7px 15px rgba(13,71,161,.3);
+}
+
+.add-button{
+    width:100%;
+    margin-top:20px;
+}
+
+.operations{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:20px;
+}
+
+.operations button{
+    width:100%;
+}
+
+.analyze{
+    width:100%;
+    margin-top:20px;
+    background:linear-gradient(135deg,#43a047,#1b5e20);
+}
+
+.students-count{
+    text-align:center;
+    margin-top:20px;
+    color:#555;
+    font-size:16px;
+}
+
+.results{
+    display:flex;
+    gap:25px;
+    margin-top:35px;
+}
+
+.card{
+    flex:1;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+.topper{
+    background:linear-gradient(135deg,#fff8dc,#ffe082);
+}
+
+.lowest{
+    background:linear-gradient(135deg,#ffebee,#ef9a9a);
+}
+
+.icon{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+.card h3{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.card p{
+    font-size:17px;
+    margin:5px 0;
+    color:#444;
+}
+
+.marks{
+    font-size:32px !important;
+    font-weight:bold;
+    margin-top:15px !important;
+}
+
+#message{
+    text-align:center;
+    margin-top:20px;
+    font-weight:bold;
+    color:#1565c0;
+}
+
+@media(max-width:700px){
+
+    body{
+        padding:20px;
+    }
+
+    .container{
+        width:100%;
+        padding:25px;
+    }
+
+    .input-row{
+        flex-direction:column;
+    }
+
+    .operations{
+        grid-template-columns:1fr;
+    }
+
+    .results{
+        flex-direction:column;
+    }
+
+}
+
+</style>
 
 </head>
 
+
 <body>
 
-    <div class="box">
+<div class="container">
 
-        <h2>Task 5.2 – Max & Min Finder</h2>
+    <h1>Student Marks Analysis</h1>
 
-        <label>Enter numbers separated by commas:</label>
+    <p class="subtitle">
+        Student Performance using Arrays, Objects and Array Methods
+    </p>
 
-        <input
-            type="text"
-            id="inputNumbers"
-            placeholder="e.g. 10, 25, 3, 47, 8"
-        >
 
-        <div class="error" id="errorMsg"></div>
+    <div class="form-section">
 
-        <button onclick="findMaxMin()">
-            Find Max & Min
+        <h2>Enter Student Details</h2>
+
+
+        <div class="input-row">
+
+            <div class="input-group">
+
+                <label for="name">
+                    Student Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter student name"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="prn">
+                    PRN
+                </label>
+
+                <input
+                    type="text"
+                    id="prn"
+                    placeholder="Enter PRN"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="marks">
+                    Marks
+                </label>
+
+                <input
+                    type="number"
+                    id="marks"
+                    placeholder="Enter marks"
+                    min="0"
+                    max="100"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- PUSH -->
+
+        <button class="add-button" onclick="addStudent()">
+            Add Student (push)
         </button>
 
 
-        <div class="result" id="result">
+        <!-- POP, UNSHIFT, SHIFT -->
 
-            <p>
-                Numbers Array:
-                <span id="arrDisplay"></span>
+        <div class="operations">
+
+            <button onclick="removeLastStudent()">
+                Remove Last Student (pop)
+            </button>
+
+            <button onclick="removeFirstStudent()">
+                Remove First Student (shift)
+            </button>
+
+            <button onclick="addFirstStudent()">
+                Add Student at Beginning (unshift)
+            </button>
+
+            <button onclick="showCurrentArray()">
+                Check Array in Console
+            </button>
+
+        </div>
+
+
+        <button class="analyze" onclick="analyzeStudents()">
+            Analyze Student Performance
+        </button>
+
+
+        <div class="students-count" id="studentCount">
+            No students added yet.
+        </div>
+
+    </div>
+
+
+    <!-- FINAL RESULTS ONLY -->
+
+    <div class="results">
+
+        <div class="card topper">
+
+            <div class="icon">🏆</div>
+
+            <h2>Topper</h2>
+
+            <h3 id="topperName">---</h3>
+
+            <p id="topperPRN">
+                PRN: ---
             </p>
 
-            <p>
-                Maximum Value:
-                <span id="maxVal"></span>
-            </p>
-
-            <p>
-                Minimum Value:
-                <span id="minVal"></span>
+            <p class="marks" id="topperMarks">
+                --- Marks
             </p>
 
         </div>
 
 
-        <hr style="margin-top: 30px; border: none; border-top: 1px solid #ddd;">
+        <div class="card lowest">
 
-        <p style="margin-top: 12px; font-size: 14px; color: #555;">
+            <div class="icon">📉</div>
 
-            <strong>Name:</strong> Ojaswini Thote
-            &nbsp;|&nbsp;
-            <strong>PRN:</strong> 24070521048
+            <h2>Lowest Marks</h2>
 
-        </p>
+            <h3 id="lowestName">---</h3>
+
+            <p id="lowestPRN">
+                PRN: ---
+            </p>
+
+            <p class="marks" id="lowestMarks">
+                --- Marks
+            </p>
+
+        </div>
 
     </div>
 
-    <script src="script.js"></script>
+
+    <div id="message"></div>
+
+</div>
+
+
+<script src="script1.js"></script>
 
 </body>
 
@@ -496,89 +740,417 @@ Create an array of objects from user input and find the Maximum and Minimum valu
 ### `Task5/5.2/script.js`
 
 ```javascript
-// Task 5.2 – Find Max & Min from Array of Objects
+// ==========================================
+// ARRAY OF STUDENT OBJECTS
+// ==========================================
 
-function findMaxMin() {
-
-    const input =
-        document.getElementById("inputNumbers").value.trim();
-
-    const errorMsg =
-        document.getElementById("errorMsg");
-
-    const resultDiv =
-        document.getElementById("result");
+let students = [];
 
 
-    errorMsg.textContent = "";
-    resultDiv.style.display = "none";
+// ==========================================
+// PUSH - ADD STUDENT
+// ==========================================
+
+function addStudent(){
+
+    let name = document.getElementById("name").value.trim();
+    let prn = document.getElementById("prn").value.trim();
+    let marks = Number(document.getElementById("marks").value);
+
+    let message = document.getElementById("message");
 
 
-    if (input === "") {
+    if(name === "" || prn === "" || isNaN(marks)){
 
-        errorMsg.textContent =
-            "Please enter at least one number.";
-
-        return;
-    }
-
-
-    // Convert input string into an array of objects using map()
-
-    const rawValues = input.split(",");
-
-    const numbersArray = rawValues.map((item, index) => ({
-
-        id: index + 1,
-
-        value: Number(item.trim())
-
-    }));
-
-
-    // Validate using some()
-
-    const hasInvalid =
-        numbersArray.some(obj => isNaN(obj.value));
-
-
-    if (hasInvalid) {
-
-        errorMsg.textContent =
-            "Invalid input! Please enter numbers only, separated by commas.";
+        message.textContent =
+            "Please enter all student details.";
 
         return;
     }
 
 
-    // Extract numeric values using map()
+    if(marks < 0 || marks > 100){
 
-    const values =
-        numbersArray.map(obj => obj.value);
+        message.textContent =
+            "Marks must be between 0 and 100.";
 
-
-    // Find maximum and minimum values
-
-    const maxVal =
-        Math.max(...values);
-
-    const minVal =
-        Math.min(...values);
+        return;
+    }
 
 
-    // Display results
+    // Create Student Object
 
-    document.getElementById("arrDisplay").textContent =
-        "[" + values.join(", ") + "]";
+    let student = {
 
-    document.getElementById("maxVal").textContent =
-        maxVal;
+        name: name,
+        prn: prn,
+        marks: marks
 
-    document.getElementById("minVal").textContent =
-        minVal;
+    };
 
 
-    resultDiv.style.display = "block";
+    // PUSH
+    students.push(student);
+
+
+    console.log("PUSH() executed");
+    console.log("Student added:", student);
+    console.log("Current Array:", students);
+
+
+    updateStudentCount();
+
+
+    document.getElementById("name").value = "";
+    document.getElementById("prn").value = "";
+    document.getElementById("marks").value = "";
+
+    message.textContent =
+        "Student added successfully using push().";
+
+}
+
+
+// ==========================================
+// POP - REMOVE LAST STUDENT
+// ==========================================
+
+function removeLastStudent(){
+
+    if(students.length === 0){
+
+        document.getElementById("message").textContent =
+            "No students available.";
+
+        return;
+    }
+
+
+    let removedStudent = students.pop();
+
+
+    console.log("POP() executed");
+    console.log("Removed Student:", removedStudent);
+    console.log("Current Array:", students);
+
+
+    updateStudentCount();
+
+
+    document.getElementById("message").textContent =
+        removedStudent.name +
+        " removed using pop().";
+
+}
+
+
+// ==========================================
+// UNSHIFT - ADD STUDENT AT BEGINNING
+// ==========================================
+
+function addFirstStudent(){
+
+    let name = document.getElementById("name").value.trim();
+    let prn = document.getElementById("prn").value.trim();
+    let marks = Number(document.getElementById("marks").value);
+
+
+    if(name === "" || prn === "" || isNaN(marks)){
+
+        document.getElementById("message").textContent =
+            "Enter student details first.";
+
+        return;
+    }
+
+
+    if(marks < 0 || marks > 100){
+
+        document.getElementById("message").textContent =
+            "Marks must be between 0 and 100.";
+
+        return;
+    }
+
+
+    let student = {
+
+        name: name,
+        prn: prn,
+        marks: marks
+
+    };
+
+
+    // UNSHIFT
+
+    students.unshift(student);
+
+
+    console.log("UNSHIFT() executed");
+    console.log("Student added at beginning:", student);
+    console.log("Current Array:", students);
+
+
+    updateStudentCount();
+
+
+    document.getElementById("name").value = "";
+    document.getElementById("prn").value = "";
+    document.getElementById("marks").value = "";
+
+
+    document.getElementById("message").textContent =
+        "Student added at beginning using unshift().";
+
+}
+
+
+// ==========================================
+// SHIFT - REMOVE FIRST STUDENT
+// ==========================================
+
+function removeFirstStudent(){
+
+    if(students.length === 0){
+
+        document.getElementById("message").textContent =
+            "No students available.";
+
+        return;
+    }
+
+
+    let removedStudent = students.shift();
+
+
+    console.log("SHIFT() executed");
+    console.log("Removed Student:", removedStudent);
+    console.log("Current Array:", students);
+
+
+    updateStudentCount();
+
+
+    document.getElementById("message").textContent =
+        removedStudent.name +
+        " removed using shift().";
+
+}
+
+
+// ==========================================
+// FOREACH
+// ==========================================
+
+function analyzeStudents(){
+
+    if(students.length === 0){
+
+        document.getElementById("message").textContent =
+            "Please add students first.";
+
+        return;
+    }
+
+
+    console.log("================================");
+    console.log("ARRAY METHODS");
+    console.log("================================");
+
+
+    // ======================================
+    // forEach()
+    // ======================================
+
+    console.log("forEach() executed:");
+
+    students.forEach(function(student){
+
+        console.log(
+            student.name +
+            " | " +
+            student.prn +
+            " | " +
+            student.marks
+        );
+
+    });
+
+
+    // ======================================
+    // map()
+    // ======================================
+
+    let graceMarks = students.map(function(student){
+
+        return {
+
+            name: student.name,
+            prn: student.prn,
+            marks: student.marks + 5
+
+        };
+
+    });
+
+
+    console.log("map() executed:");
+    console.log("Grace Marks:", graceMarks);
+
+
+    // ======================================
+    // filter()
+    // ======================================
+
+    let passedStudents = students.filter(function(student){
+
+        return student.marks >= 40;
+
+    });
+
+
+    console.log("filter() executed:");
+    console.log("Passed Students:", passedStudents);
+
+
+    // ======================================
+    // reduce()
+    // ======================================
+
+    let totalMarks = students.reduce(function(total, student){
+
+        return total + student.marks;
+
+    }, 0);
+
+
+    console.log("reduce() executed:");
+    console.log("Total Marks:", totalMarks);
+
+
+    // ======================================
+    // AVERAGE
+    // ======================================
+
+    let average = totalMarks / students.length;
+
+
+    console.log("Average Marks:", average);
+
+
+    // ======================================
+    // FIND HIGHEST MARKS
+    // ======================================
+
+    let highestMarks = Math.max(
+
+        ...students.map(function(student){
+
+            return student.marks;
+
+        })
+
+    );
+
+
+    // ======================================
+    // FIND LOWEST MARKS
+    // ======================================
+
+    let lowestMarks = Math.min(
+
+        ...students.map(function(student){
+
+            return student.marks;
+
+        })
+
+    );
+
+
+    // ======================================
+    // FIND TOPPER
+    // ======================================
+
+    let topper = students.find(function(student){
+
+        return student.marks === highestMarks;
+
+    });
+
+
+    // ======================================
+    // FIND LOWEST STUDENT
+    // ======================================
+
+    let lowestStudent = students.find(function(student){
+
+        return student.marks === lowestMarks;
+
+    });
+
+
+    console.log("Topper:", topper);
+
+    console.log("Lowest Marks Student:", lowestStudent);
+
+
+    // ======================================
+    // DISPLAY FINAL RESULTS
+    // ======================================
+
+    document.getElementById("topperName").textContent =
+        topper.name;
+
+    document.getElementById("topperPRN").textContent =
+        "PRN: " + topper.prn;
+
+    document.getElementById("topperMarks").textContent =
+        topper.marks + " Marks";
+
+
+    document.getElementById("lowestName").textContent =
+        lowestStudent.name;
+
+    document.getElementById("lowestPRN").textContent =
+        "PRN: " + lowestStudent.prn;
+
+    document.getElementById("lowestMarks").textContent =
+        lowestStudent.marks + " Marks";
+
+
+    document.getElementById("message").textContent =
+        "Analysis completed successfully.";
+
+}
+
+
+// ==========================================
+// DISPLAY ARRAY IN CONSOLE ONLY
+// ==========================================
+
+function showCurrentArray(){
+
+    console.log("Current Student Array:");
+    console.table(students);
+
+    document.getElementById("message").textContent =
+        "Current array displayed in browser console.";
+
+}
+
+
+// ==========================================
+// UPDATE STUDENT COUNT
+// ==========================================
+
+function updateStudentCount(){
+
+    document.getElementById("studentCount").textContent =
+        students.length +
+        " student(s) currently stored.";
+
 }
 ```
 
