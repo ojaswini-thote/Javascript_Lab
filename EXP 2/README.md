@@ -1,7 +1,7 @@
 # Experiment No. 2
 
 **Student Name:** Ojaswini Thote
-**PRN:** *Your PRN Number*
+**PRN:** 24070521048
 
 **File Path:** `file:///Users/ojaswinithote/Desktop/Javascript/EXP%202/index2.html`
 
