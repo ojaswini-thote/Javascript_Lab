@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to SIT!</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: lightpink;
+        }
+
+        .box{
+            width: 450px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        h1, h2{
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select{
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button{
+            padding: 8px 15px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: darkblue;
+        }
+
+        #output{
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: #f8f8f8;
+        }
+    </style>
+
+    <!-- Internal JavaScript -->
+    <script>
+        function showWelcome() {
+
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let cgpa = document.getElementById("cgpa").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+
+            // Get selected semester
+            let semester = document.querySelector('input[name="semester"]:checked').value;
+
+            // Get selected section
+            let section = document.getElementById("section").value;
+
+            document.getElementById("output").innerHTML =
+                "<h2>Student Information</h2>" +
+                "<p><b>Name:</b> " + name + "</p>" +
+                "<p><b>Age:</b> " + age + "</p>" +
+                "<p><b>CGPA:</b> " + cgpa + "</p>" +
+                "<p><b>Semester:</b> " + semester + "</p>" +
+                "<p><b>Section:</b> " + section + "</p>" +
+                "<p><b>Email:</b> " + email + "</p>" +
+                "<p><b>Phone Number:</b> " + phone + "</p>";
+
+            console.log("Name: " + name);
+            console.info("Age: " + age);
+            console.log("CGPA: " + cgpa);
+            console.log("Semester: " + semester);
+            console.log("Section: " + section);
+            console.log("Email: " + email);
+            console.log("Phone: " + phone);
+
+            console.warn("This is a warning message");
+            console.error("This is an error message");
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>Welcome to SIT!</h1>
+    <h2>Student Information</h2>
+
+    <label>Enter Name:</label><br>
+    <input type="text" id="name" placeholder="Enter Name"><br>
+
+    <label>Enter Age:</label><br>
+    <input type="number" id="age" placeholder="Enter Age"><br>
+
+    <label>Enter CGPA:</label><br>
+    <input type="text" id="cgpa" placeholder="Enter CGPA"><br>
+
+    <label>Select Semester:</label><br>
+
+    <input type="radio" name="semester" value="Semester 1" checked> Semester 1<br>
+    <input type="radio" name="semester" value="Semester 2"> Semester 2<br>
+    <input type="radio" name="semester" value="Semester 3"> Semester 3<br>
+    <input type="radio" name="semester" value="Semester 4"> Semester 4<br>
+    <input type="radio" name="semester" value="Semester 5"> Semester 5<br>
+    <input type="radio" name="semester" value="Semester 6"> Semester 6<br>
+    <input type="radio" name="semester" value="Semester 7"> Semester 7<br>
+    <input type="radio" name="semester" value="Semester 8"> Semester 8<br><br>
+
+    <label>Select Section:</label><br>
+
+    <select id="section">
+        <option value="Section A">Section A</option>
+        <option value="Section B">Section B</option>
+        <option value="Section C">Section C</option>
+        <option value="Section D">Section D</option>
+    </select>
+
+    <label>Enter Email ID:</label><br>
+    <input type="text" id="email" placeholder="Enter Email"><br>
+
+    <label>Enter Phone Number:</label><br>
+    <input type="number" id="phone" placeholder="Enter Phone Number"><br><br>
+
+    <button onclick="showWelcome(); greet();">
+        Submit
+    </button>
+
+    <hr>
+
+    <div id="output"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
