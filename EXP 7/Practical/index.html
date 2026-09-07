@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List | To-Do List</title>
+
+```
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "DM Sans", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        background:
+            radial-gradient(circle at 10% 10%, #e7ddff 0, transparent 30%),
+            radial-gradient(circle at 90% 90%, #dceeff 0, transparent 30%),
+            #f8f6f1;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 600px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid #e7e1d8;
+        border-radius: 24px;
+        padding: 38px;
+        box-shadow: 0 18px 45px rgba(109, 94, 133, 0.12);
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ebe6df;
+    }
+
+    h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 32px;
+        color: #51466b;
+        margin: 0 0 5px;
+    }
+
+    .header p {
+        color: #8a8491;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .date-box {
+        background: #eee9f8;
+        color: #695b84;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .input-section {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    input {
+        flex: 1;
+        padding: 14px 16px;
+        border: 1.5px solid #ded6ea;
+        background: #fcfbfd;
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 15px;
+        color: #51466b;
+        outline: none;
+        transition: 0.25s;
+    }
+
+    input::placeholder {
+        color: #aaa4b0;
+    }
+
+    input:focus {
+        border-color: #a895c7;
+        box-shadow: 0 0 0 4px rgba(168, 149, 199, 0.12);
+    }
+
+    #addBtn {
+        border: none;
+        background: #a895c7;
+        color: white;
+        padding: 0 22px;
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s;
+    }
+
+    #addBtn:hover {
+        background: #8f7ab2;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(143, 122, 178, 0.2);
+    }
+
+    .task-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+    }
+
+    .task-info h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 20px;
+        color: #5c5368;
+        margin: 0;
+    }
+
+    .task-count {
+        background: #e8f1fa;
+        color: #6c8196;
+        padding: 6px 11px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 15px;
+        margin-bottom: 11px;
+        background: #faf8fc;
+        border: 1px solid #eee9f2;
+        border-radius: 14px;
+        animation: appear 0.35s ease;
+        transition: 0.25s;
+    }
+
+    li:hover {
+        background: #f6f2fa;
+        transform: translateY(-2px);
+        box-shadow: 0 7px 15px rgba(99, 83, 120, 0.07);
+    }
+
+    .task-number {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background: #e9e1f4;
+        color: #7c6a96;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .task-text {
+        flex: 1;
+        color: #554d60;
+        font-size: 15px;
+        word-break: break-word;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        border: none;
+        padding: 8px 12px;
+        border-radius: 9px;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .edit-btn {
+        background: #e7f0f7;
+        color: #5d788f;
+    }
+
+    .edit-btn:hover {
+        background: #d8e8f2;
+    }
+
+    .delete-btn {
+        background: #f8e8e8;
+        color: #a56c72;
+    }
+
+    .delete-btn:hover {
+        background: #f2d9da;
+    }
+
+    .empty-message {
+        text-align: center;
+        color: #aaa4b0;
+        padding: 30px 10px;
+        border: 1px dashed #ddd5e4;
+        border-radius: 14px;
+        font-size: 14px;
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 550px) {
+        .container {
+            padding: 25px 20px;
+        }
+
+        .header {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-section {
+            flex-direction: column;
+        }
+
+        #addBtn {
+            padding: 14px;
+        }
+
+        .edit-btn,
+        .delete-btn {
+            padding: 7px 9px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="container">
+
+    <div class="header">
+        <div>
+            <h1>My Tasks</h1>
+            <p>Organize your day, one task at a time.</p>
+        </div>
+
+        <div class="date-box" id="currentDate"></div>
+    </div>
+
+    <div class="input-section">
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="What needs to be done?"
+        >
+        <button id="addBtn">Add Task</button>
+    </div>
+
+    <div class="task-info">
+        <h2>To-Do List</h2>
+        <span class="task-count" id="taskCount">0 tasks</span>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <div id="emptyMessage" class="empty-message">
+        Your list is empty. Add a task to get started.
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+```
+
+</body>
+</html>
