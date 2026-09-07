@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ShopEasy - Online Shopping</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #087dcc;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: #087dcc;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background: #087dcc;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        td input {
+            width: 60px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        #bill {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛒 Online Shopping</h1>
+</header>
+
+<div class="container">
+
+    <!-- Customer Details -->
+    <div class="section">
+
+        <h2>Customer Details</h2>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" placeholder="Enter phone number">
+
+        <label for="prime">Prime Member</label>
+        <select id="prime">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="payment">Payment Method</label>
+        <select id="payment">
+            <option value="UPI">UPI</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="Cash">Cash</option>
+        </select>
+
+    </div>
+
+    <!-- Products -->
+    <div class="section">
+
+        <h2>Products</h2>
+
+        <table>
+
+            <tr>
+                <th>Product</th>
+                <th>Price (₹)</th>
+                <th>Quantity</th>
+            </tr>
+
+            <tr>
+                <td>Laptop</td>
+                <td>50000</td>
+                <td>
+                    <input type="number" id="laptop" value="0" min="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Smartphone</td>
+                <td>25000</td>
+                <td>
+                    <input type="number" id="smartphone" value="0" min="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Tablet</td>
+                <td>18000</td>
+                <td>
+                    <input type="number" id="tablet" value="0" min="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Smart Watch</td>
+                <td>5000</td>
+                <td>
+                    <input type="number" id="watch" value="0" min="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Headphones</td>
+                <td>2000</td>
+                <td>
+                    <input type="number" id="headphones" value="0" min="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Bluetooth Speaker</td>
+                <td>3500</td>
+                <td>
+                    <input type="number" id="speaker" value="0" min="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Keyboard</td>
+                <td>1500</td>
+                <td>
+                    <input type="number" id="keyboard" value="0" min="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Mouse</td>
+                <td>700</td>
+                <td>
+                    <input type="number" id="mouse" value="0" min="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>USB Drive</td>
+                <td>800</td>
+                <td>
+                    <input type="number" id="usb" value="0" min="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Power Bank</td>
+                <td>1200</td>
+                <td>
+                    <input type="number" id="powerbank" value="0" min="0">
+                </td>
+            </tr>
+
+        </table>
+
+        <button onclick="generateBill()">🧾 Generate Bill</button>
+
+        <div id="bill"></div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
