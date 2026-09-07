@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grading Portal</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Segoe UI",sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:linear-gradient(135deg,#F5F1EA,#E8E2D8);
+            padding:30px;
+        }
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            color:#5C5248;
+            margin-bottom:30px;
+        }
+
+        h3{
+            color:#8B7D6B;
+            margin-bottom:15px;
+            border-bottom:2px solid #E8E2D8;
+            padding-bottom:5px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:600;
+            color:#6B6258;
+        }
+
+        input,select{
+            width:100%;
+            padding:12px;
+            border:1px solid #D8D2C8;
+            border-radius:10px;
+            background:#FAF8F5;
+            margin-bottom:15px;
+        }
+
+        .semester{
+            display:flex;
+            gap:15px;
+            flex-wrap:wrap;
+            margin-bottom:20px;
+        }
+
+        button{
+            width:100%;
+            padding:15px;
+            border:none;
+            border-radius:10px;
+            background:#8B7D6B;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+            margin-top:15px;
+        }
+
+        button:hover{
+            background:#746658;
+        }
+
+        .result{
+            margin-top:30px;
+            padding:20px;
+            background:#F7F4EF;
+            border-left:5px solid #8B7D6B;
+            border-radius:10px;
+            line-height:2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎓 Student Grading Portal</h1>
+
+    <h3>Student Information</h3>
+
+    <div class="grid">
+
+        <div>
+            <label>Student Name</label>
+            <input type="text" id="name">
+        </div>
+
+        <div>
+            <label>Roll Number</label>
+            <input type="text" id="roll">
+        </div>
+
+        <div>
+            <label>Department</label>
+            <select id="department">
+                <option>Computer Science</option>
+                <option>Information Technology</option>
+                <option>Electronics</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Academic Year</label>
+            <select id="year">
+                <option>2024-25</option>
+                <option>2025-26</option>
+                <option>2026-27</option>
+            </select>
+        </div>
+
+    </div>
+
+    <label>Semester</label>
+
+    <div class="semester">
+        <label>
+    <input type="radio" name="semester" value="Semester 1">
+    Semester 1
+</label>
+
+<label>
+    <input type="radio" name="semester" value="Semester 2">
+    Semester 2
+</label>
+
+<label>
+    <input type="radio" name="semester" value="Semester 3">
+    Semester 3
+</label>
+
+<label>
+    <input type="radio" name="semester" value="Semester 4">
+    Semester 4
+</label>
+
+<label>
+    <input type="radio" name="semester" value="Semester 5">
+    Semester 5
+</label>
+
+<label>
+    <input type="radio" name="semester" value="Semester 6">
+    Semester 6
+</label>
+    </div>
+
+    <h3>Academic Details</h3>
+
+    <div class="grid">
+
+        <div>
+            <label>Subject</label>
+            <select id="subject">
+                <option>JavaScript</option>
+                <option>Computer Networks</option>
+                <option>Compiler Construction</option>
+                <option>Data Compression</option>
+                <option>Data Mining</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Maximum Marks</label>
+            <input type="number" id="maxMarks">
+        </div>
+
+        <div>
+            <label>Obtained Marks</label>
+            <input type="number" id="marks">
+        </div>
+
+        <div>
+            <label>Internal Marks</label>
+            <input type="number" id="internal">
+        </div>
+
+        <div>
+            <label>Practical Marks</label>
+            <input type="number" id="practical">
+        </div>
+
+        <div>
+            <label>Attendance (%)</label>
+            <input type="number" id="attendance">
+        </div>
+
+    </div>
+
+    <button onclick="gradeSystem()">
+        Generate Result
+    </button>
+
+    <button onclick="window.print()">
+        Print Result
+    </button>
+
+    <div class="result">
+        <h3>Result</h3>
+        <p id="result">Student result will appear here.</p>
+    </div>
+
+</div>
+
+<script src="script2.js"></script>
+
+</body>
+</html>
