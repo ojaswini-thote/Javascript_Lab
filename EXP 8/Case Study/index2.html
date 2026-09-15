@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitSpace Gym Membership</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f0e8;
+            color: #28322b;
+            min-height: 100vh;
+            padding: 35px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: #fffdf8;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(48, 58, 49, 0.12);
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            background: #b8c7ad;
+            padding: 35px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: "FIT";
+            position: absolute;
+            right: 25px;
+            bottom: -20px;
+            font-size: 110px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .header h1 {
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #26332a;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 span {
+            color: #52634f;
+        }
+
+        .header p {
+            margin-top: 7px;
+            font-size: 15px;
+            color: #465448;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ================= FORM ================= */
+
+        form {
+            padding: 35px 40px 40px;
+        }
+
+        .section-title {
+            text-transform: uppercase;
+            font-size: 21px;
+            letter-spacing: 0.8px;
+            margin-bottom: 22px;
+            color: #52634f;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 7px;
+            color: #39463c;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 2px solid #d7ddd2;
+            border-radius: 9px;
+            background: #fbfaf6;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #303a32;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #7e9674;
+            background: #f5f8f1;
+        }
+
+        input.valid,
+        select.valid,
+        textarea.valid {
+            border-color: #7e9674;
+            background: #f2f7ef;
+        }
+
+        input.invalid,
+        select.invalid,
+        textarea.invalid {
+            border-color: #c87878;
+            background: #fff5f5;
+        }
+
+        .error {
+            color: #bd5d5d;
+            font-size: 12px;
+            margin-top: 5px;
+            min-height: 16px;
+        }
+
+        /* ================= GENDER ================= */
+
+        .gender-options {
+            display: flex;
+            gap: 18px;
+            padding: 11px 0;
+        }
+
+        .gender-options label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .gender-options input {
+            width: auto;
+            accent-color: #718768;
+        }
+
+        /* ================= CHECKBOXES ================= */
+
+        .checkbox-options {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            padding: 5px 0;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .checkbox-option input {
+            width: auto;
+            accent-color: #718768;
+        }
+
+        /* ================= TEXTAREA ================= */
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ================= BUTTON ================= */
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #64795d;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            background: #52674d;
+            transform: translateY(-1px);
+        }
+
+        /* ================= MESSAGE ================= */
+
+        #message {
+            text-align: center;
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            display: none;
+        }
+
+        #message.success {
+            display: block;
+            background: #e4efdf;
+            color: #4d6848;
+        }
+
+        #message.fail {
+            display: block;
+            background: #f9e5e5;
+            color: #a05252;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 650px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+
+            .header,
+            form {
+                padding: 28px 22px;
+            }
+
+            .header h1 {
+                font-size: 34px;
+            }
+
+            .gender-options {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="header">
+
+        <h1>
+            Fit<span>Space</span> Gym
+        </h1>
+
+        <p>
+            Build strength. Stay consistent. Become your best.
+        </p>
+
+    </div>
+
+
+    <!-- ================= FORM ================= -->
+
+    <form id="membershipForm">
+
+
+        <h2 class="section-title">
+            Membership Registration
+        </h2>
+
+
+        <div class="form-grid">
+
+
+            <!-- FULL NAME -->
+
+            <div class="form-group full-width">
+
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Enter your full name"
+                >
+
+                <span
+                    class="error"
+                    id="nameError"
+                ></span>
+
+            </div>
+
+
+            <!-- AGE -->
+
+            <div class="form-group">
+
+                <label for="age">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    min="16"
+                    max="60"
+                    placeholder="16 - 60"
+                >
+
+                <span
+                    class="error"
+                    id="ageError"
+                ></span>
+
+            </div>
+
+
+            <!-- GENDER -->
+
+            <div class="form-group">
+
+                <label>
+                    Gender
+                </label>
+
+                <div class="gender-options">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Male"
+                        >
+
+                        Male
+
+                    </label>
+
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Female"
+                        >
+
+                        Female
+
+                    </label>
+
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Other"
+                        >
+
+                        Other
+
+                    </label>
+
+                </div>
+
+                <span
+                    class="error"
+                    id="genderError"
+                ></span>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="example@email.com"
+                >
+
+                <span
+                    class="error"
+                    id="emailError"
+                ></span>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="text"
+                    id="phone"
+                    maxlength="10"
+                    placeholder="10 digit number"
+                >
+
+                <span
+                    class="error"
+                    id="phoneError"
+                ></span>
+
+            </div>
+
+
+            <!-- EYE COLOR -->
+
+            <div class="form-group">
+
+                <label for="eyeColor">
+                    Eye Color
+                </label>
+
+                <select id="eyeColor">
+
+                    <option value="">
+                        Select eye color
+                    </option>
+
+                    <option value="Green">
+                        Green
+                    </option>
+
+                    <option value="Blue">
+                        Blue
+                    </option>
+
+                    <option value="Brown">
+                        Brown
+                    </option>
+
+                    <option value="Hazel">
+                        Hazel
+                    </option>
+
+                    <option value="Gray">
+                        Gray
+                    </option>
+
+                </select>
+
+                <span
+                    class="error"
+                    id="eyeError"
+                ></span>
+
+            </div>
+
+
+            <!-- FITNESS GOAL -->
+
+            <div class="form-group">
+
+                <label for="goal">
+                    Fitness Goal
+                </label>
+
+                <select id="goal">
+
+                    <option value="">
+                        Select your fitness goal
+                    </option>
+
+                    <option value="Weight Loss">
+                        Weight Loss
+                    </option>
+
+                    <option value="Muscle Gain">
+                        Muscle Gain
+                    </option>
+
+                    <option value="General Fitness">
+                        General Fitness
+                    </option>
+
+                    <option value="Strength Training">
+                        Strength Training
+                    </option>
+
+                </select>
+
+                <span
+                    class="error"
+                    id="goalError"
+                ></span>
+
+            </div>
+
+
+            <!-- MEMBERSHIP PLAN -->
+
+            <div class="form-group">
+
+                <label for="plan">
+                    Membership Plan
+                </label>
+
+                <select id="plan">
+
+                    <option value="">
+                        Select a membership plan
+                    </option>
+
+                    <option value="Monthly">
+                        Monthly — Flexible
+                    </option>
+
+                    <option value="Quarterly">
+                        Quarterly — 3 Months
+                    </option>
+
+                    <option value="Yearly">
+                        Yearly — Best Value
+                    </option>
+
+                </select>
+
+                <span
+                    class="error"
+                    id="planError"
+                ></span>
+
+            </div>
+
+
+            <!-- HEIGHT / WEIGHT CHECKBOXES -->
+
+            <div class="form-group full-width">
+
+                <label>
+                    Check all that apply
+                </label>
+
+                <div class="checkbox-options">
+
+                    <label class="checkbox-option">
+
+                        <input
+                            type="checkbox"
+                            id="heightCheck"
+                        >
+
+                        Over 6 feet tall
+
+                    </label>
+
+
+                    <label class="checkbox-option">
+
+                        <input
+                            type="checkbox"
+                            id="weightCheck"
+                        >
+
+                        Over 200 pounds
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- ATHLETIC ABILITY -->
+
+            <div class="form-group full-width">
+
+                <label for="ability">
+                    Describe your athletic ability
+                </label>
+
+                <textarea
+                    id="ability"
+                    placeholder="Tell us about your fitness experience, activities, or athletic abilities..."
+                ></textarea>
+
+                <span
+                    class="error"
+                    id="abilityError"
+                ></span>
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <div class="form-group full-width">
+
+                <div class="checkbox-option">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                    >
+
+                    <label for="terms">
+                        I agree to the gym membership
+                        terms and conditions.
+                    </label>
+
+                </div>
+
+                <span
+                    class="error"
+                    id="termsError"
+                ></span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- SUBMIT -->
+
+        <button type="submit">
+            Enter My Information
+        </button>
+
+
+        <!-- MESSAGE -->
+
+        <div id="message"></div>
+
+
+    </form>
+
+</div>
+
+
+<script src="script2.js"></script>
+
+</body>
+
+</html>

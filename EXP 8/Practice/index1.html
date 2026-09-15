@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LuxeFind | Curated Collection</title>
+
+
+    <style>
+
+        /* ================= GENERAL ================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 8% 12%,
+                    rgba(232, 93, 143, 0.12),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 92% 80%,
+                    rgba(232, 93, 143, 0.08),
+                    transparent 25%
+                ),
+                #f7f2f3;
+
+            color: #191719;
+
+            min-height: 100vh;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #191719;
+
+            color: white;
+
+            padding: 22px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 3px 15px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .logo {
+            font-size: 25px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        .logo span {
+            color: #ed719d;
+        }
+
+
+        .header-right {
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+        }
+
+
+        .header-tag {
+            color: #c8c1c4;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .bag {
+            font-size: 20px;
+
+            color: #ed719d;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 90%;
+
+            max-width: 1160px;
+
+            margin: 48px auto;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+
+            margin-bottom: 38px;
+        }
+
+
+        .eyebrow {
+            color: #d45180;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+
+        .hero h1 {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 48px;
+
+            font-weight: normal;
+
+            line-height: 1.1;
+
+            margin-bottom: 12px;
+        }
+
+
+        .hero h1 span {
+            color: #d45180;
+
+            font-style: italic;
+        }
+
+
+        .hero p {
+            color: #777074;
+
+            font-size: 15px;
+
+            max-width: 550px;
+
+            margin: auto;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================= DECORATIVE LINE ================= */
+
+        .divider {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin: 22px 0;
+        }
+
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            height: 1px;
+
+            width: 55px;
+
+            background: #d9cdd1;
+        }
+
+
+        .divider span {
+            color: #e05d89;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= SEARCH PANEL ================= */
+
+        .search-panel {
+            background: rgba(
+                255,
+                251,
+                252,
+                0.96
+            );
+
+            padding: 27px;
+
+            border: 1px solid #e4d8dd;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(35, 25, 29, 0.07);
+
+            margin-bottom: 40px;
+        }
+
+
+        .search-heading {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .search-icon {
+            width: 40px;
+
+            height: 40px;
+
+            background: #fbe7ee;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 17px;
+        }
+
+
+        .search-heading h2 {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 20px;
+
+            font-weight: normal;
+        }
+
+
+        /* ================= FILTERS ================= */
+
+        .filters {
+            display: flex;
+
+            gap: 11px;
+
+            flex-wrap: wrap;
+        }
+
+
+        /* ================= SEARCH INPUT ================= */
+
+        .input-container {
+            flex: 1;
+
+            min-width: 230px;
+
+            position: relative;
+        }
+
+
+        .input-container span {
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #888;
+        }
+
+
+        #searchBox {
+            width: 100%;
+
+            padding:
+                14px
+                15px
+                14px
+                42px;
+
+            border: 1px solid #d8ced2;
+
+            border-radius: 9px;
+
+            background: white;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+
+        #searchBox:focus {
+            border-color: #e05d89;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(224, 93, 137, 0.10);
+        }
+
+
+        /* ================= DROPDOWNS ================= */
+
+        #category,
+        #sortBy {
+
+            width: 180px;
+
+            padding: 14px;
+
+            border: 1px solid #d8ced2;
+
+            border-radius: 9px;
+
+            background: white;
+
+            font-size: 14px;
+
+            color: #333;
+
+            outline: none;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        #category:focus,
+        #sortBy:focus {
+            border-color: #e05d89;
+        }
+
+
+        /* ================= CLEAR BUTTON ================= */
+
+        #clearBtn {
+
+            padding: 14px 21px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #e05d89;
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        #clearBtn:hover {
+
+            background: #c94773;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 6px 14px
+                rgba(201, 71, 115, 0.20);
+        }
+
+
+        /* ================= ERROR ================= */
+
+        #errorMessage {
+
+            color: #c62828;
+
+            font-size: 13px;
+
+            margin-top: 10px;
+
+            min-height: 16px;
+        }
+
+
+        /* ================= PRODUCTS HEADER ================= */
+
+        .products-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            margin-bottom: 20px;
+        }
+
+
+        .collection-title small {
+
+            display: block;
+
+            color: #d45180;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 5px;
+        }
+
+
+        .collection-title h2 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 28px;
+
+            font-weight: normal;
+        }
+
+
+        /* Dynamic product count */
+
+        #productCount {
+
+            background: #191719;
+
+            color: white;
+
+            padding: 8px 15px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= PRODUCT GRID ================= */
+
+        #productList {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fill,
+                    minmax(230px, 1fr)
+                );
+
+            gap: 22px;
+        }
+
+
+        /* ================= PRODUCT CARD ================= */
+
+        .product {
+
+            background: #fffafb;
+
+            border: 1px solid #e4d8dd;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            transition: 0.25s ease;
+        }
+
+
+        .product:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(35, 25, 29, 0.11);
+        }
+
+
+        /* ================= PRODUCT IMAGE ================= */
+
+        .product-image {
+
+            width: 100%;
+
+            height: 185px;
+
+            background: #f9e9ee;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            transition:
+                transform 0.35s ease;
+        }
+
+
+        .product:hover
+        .product-image img {
+
+            transform: scale(1.04);
+        }
+
+
+        /* ================= PRODUCT INFO ================= */
+
+        .product-info {
+
+            padding: 20px;
+        }
+
+
+        .product h3 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 19px;
+
+            font-weight: normal;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* ================= CATEGORY BADGE ================= */
+
+        .category {
+
+            display: inline-block;
+
+            background: #fde9f0;
+
+            color: #c53e6f;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 16px;
+        }
+
+
+        /* ================= PRICE ================= */
+
+        .price {
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            color: #191719;
+        }
+
+
+        /* ================= NO PRODUCTS ================= */
+
+        #noProducts {
+
+            display: none;
+
+            text-align: center;
+
+            background: #fffafb;
+
+            padding: 55px 20px;
+
+            border-radius: 15px;
+
+            border: 1px dashed #d5c7cc;
+        }
+
+
+        #noProducts .icon {
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+        }
+
+
+        #noProducts h3 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 22px;
+
+            font-weight: normal;
+
+            margin-bottom: 7px;
+        }
+
+
+        #noProducts p {
+
+            color: #777074;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            text-align: center;
+
+            color: #91878c;
+
+            font-size: 11px;
+
+            letter-spacing: 0.5px;
+
+            padding: 30px;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 20px;
+            }
+
+
+            .header-tag {
+                display: none;
+            }
+
+
+            .container {
+                width: 92%;
+
+                margin: 30px auto;
+            }
+
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+
+            .filters {
+                flex-direction: column;
+            }
+
+
+            .input-container,
+            #category,
+            #sortBy,
+            #clearBtn {
+
+                width: 100%;
+
+                min-width: 100%;
+            }
+
+
+            .products-top {
+                align-items: center;
+            }
+
+
+            .product-image {
+                height: 210px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo">
+
+            Luxe<span>Find</span>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <div class="header-tag">
+
+                CURATED • SIMPLE • BEAUTIFUL
+
+            </div>
+
+
+            <div class="bag">
+
+                ♡
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <div class="eyebrow">
+
+                The LuxeFind Collection
+
+            </div>
+
+
+            <h1>
+
+                Find something
+                <span>you'll love.</span>
+
+            </h1>
+
+
+            <div class="divider">
+
+                <span>✦</span>
+
+            </div>
+
+
+            <p>
+
+                Discover thoughtfully selected products
+                across technology, fashion, books and accessories.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- ================= SEARCH PANEL ================= -->
+
+        <section class="search-panel">
+
+
+            <div class="search-heading">
+
+                <div class="search-icon">
+
+                    🔍
+
+                </div>
+
+
+                <h2>
+
+                    Search & Filter
+
+                </h2>
+
+            </div>
+
+
+
+            <form id="searchForm">
+
+
+                <div class="filters">
+
+
+                    <!-- SEARCH -->
+
+                    <div class="input-container">
+
+                        <span>
+
+                            🔎
+
+                        </span>
+
+
+                        <input
+                            type="text"
+                            id="searchBox"
+                            placeholder="What are you looking for?"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+
+                    <!-- CATEGORY -->
+
+                    <select id="category">
+
+                        <option value="All">
+
+                            All Categories
+
+                        </option>
+
+
+                        <option value="Electronics">
+
+                            Electronics
+
+                        </option>
+
+
+                        <option value="Clothing">
+
+                            Clothing
+
+                        </option>
+
+
+                        <option value="Books">
+
+                            Books
+
+                        </option>
+
+
+                        <option value="Accessories">
+
+                            Accessories
+
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- SORT -->
+
+                    <select id="sortBy">
+
+                        <option value="default">
+
+                            Sort By
+
+                        </option>
+
+
+                        <option value="nameAsc">
+
+                            Name: A → Z
+
+                        </option>
+
+
+                        <option value="nameDesc">
+
+                            Name: Z → A
+
+                        </option>
+
+
+                        <option value="priceLow">
+
+                            Price: Low → High
+
+                        </option>
+
+
+                        <option value="priceHigh">
+
+                            Price: High → Low
+
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- CLEAR -->
+
+                    <button
+                        type="button"
+                        id="clearBtn"
+                    >
+
+                        Clear Filters
+
+                    </button>
+
+
+                </div>
+
+
+                <div id="errorMessage"></div>
+
+
+            </form>
+
+        </section>
+
+
+
+        <!-- ================= COLLECTION ================= -->
+
+        <div class="products-top">
+
+
+            <div class="collection-title">
+
+                <small>
+
+                    Curated For You
+
+                </small>
+
+
+                <h2>
+
+                    Featured Collection
+
+                </h2>
+
+            </div>
+
+
+            <!-- This number changes dynamically -->
+
+            <div id="productCount">
+
+                12 Products
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= PRODUCTS ================= -->
+
+        <div id="productList"></div>
+
+
+
+        <!-- ================= NO PRODUCTS ================= -->
+
+        <div id="noProducts">
+
+            <div class="icon">
+
+                ♡
+
+            </div>
+
+
+            <h3>
+
+                Nothing found
+
+            </h3>
+
+
+            <p>
+
+                Try another search or category.
+
+            </p>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        © 2026 LuxeFind
+        &nbsp; • &nbsp;
+        Discover More. Find Better.
+
+    </footer>
+
+
+
+    <script src="script1.js"></script>
+
+</body>
+
+</html>
