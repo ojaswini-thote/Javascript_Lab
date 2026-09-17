@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminar Schedule Planner</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f0fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(80, 60, 100, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #654c7c;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+
+        th {
+            background-color: #d9c7e8;
+            color: #4c385d;
+            padding: 14px;
+            border: 1px solid #bca8cc;
+        }
+
+        td {
+            padding: 14px;
+            text-align: center;
+            border: 1px solid #d4c8dc;
+        }
+
+        tbody tr {
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        tbody tr:hover {
+            background-color: #f1eafa;
+        }
+
+        tbody tr.selected {
+            background-color: #dcd0ee;
+            font-weight: bold;
+        }
+
+        .day {
+            font-weight: bold;
+            color: #654c7c;
+        }
+
+        .time {
+            color: #555;
+        }
+
+        .topic {
+            font-weight: 500;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #76588f;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5e4672;
+        }
+
+        #clearButton {
+            background-color: #9a6b6b;
+        }
+
+        #clearButton:hover {
+            background-color: #7f5555;
+        }
+
+        #status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            color: #654c7c;
+            font-weight: bold;
+        }
+
+        .storage-info {
+            margin-top: 20px;
+            padding: 18px;
+            background-color: #f8f5fb;
+            border-radius: 10px;
+            border: 1px solid #ddd2e5;
+        }
+
+        .storage-info p {
+            margin: 10px 0;
+        }
+
+        .storage-info strong {
+            color: #654c7c;
+        }
+
+        @media (max-width: 650px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 9px 5px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Seminar Schedule Planner</h1>
+        <p class="subtitle">
+            Click on a seminar to view its details
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">Day</th>
+                    <th colspan="2">Schedule</th>
+                    <th rowspan="2">Topic</th>
+                </tr>
+                <tr>
+                    <th>Begin</th>
+                    <th>End</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr data-day="Monday" data-topic="Introduction to XML">
+                    <td class="day" rowspan="2">Monday</td>
+                    <td class="time">8:00 a.m.</td>
+                    <td class="time">5:00 p.m.</td>
+                    <td class="topic">Introduction to XML</td>
+                </tr>
+
+                <tr data-day="Monday" data-topic="Validity: DTD and Relax NG">
+                    <td class="time">8:00 a.m.</td>
+                    <td class="time">11:00 a.m.</td>
+                    <td class="topic">Validity: DTD and Relax NG</td>
+                </tr>
+
+                <tr data-day="Tuesday" data-topic="XPath">
+                    <td class="day" rowspan="2">Tuesday</td>
+                    <td class="time">11:00 a.m.</td>
+                    <td class="time">2:00 p.m.</td>
+                    <td class="topic">XPath</td>
+                </tr>
+
+                <tr data-day="Tuesday" data-topic="XSL Transformations">
+                    <td class="time">2:00 p.m.</td>
+                    <td class="time">5:00 p.m.</td>
+                    <td class="topic">XSL Transformations</td>
+                </tr>
+
+                <tr data-day="Wednesday" data-topic="XSL Formatting Objects">
+                    <td class="day">Wednesday</td>
+                    <td class="time">8:00 a.m.</td>
+                    <td class="time">12:00 p.m.</td>
+                    <td class="topic">XSL Formatting Objects</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="buttons">
+            <button id="saveTopicButton">
+                Save Topic (localStorage)
+            </button>
+
+            <button id="saveDayButton">
+                Save Day (sessionStorage)
+            </button>
+
+            <button id="clearButton">
+                Clear All
+            </button>
+        </div>
+
+        <div id="status">
+            Select a seminar to begin.
+        </div>
+
+        <div class="storage-info">
+            <p>
+                <strong>localStorage:</strong>
+                <span id="localData">Not saved</span>
+            </p>
+
+            <p>
+                <strong>sessionStorage:</strong>
+                <span id="sessionData">Not saved</span>
+            </p>
+        </div>
+
+    </div>
+
+    <script src="script1.js"></script>
+
+</body>
+</html>
