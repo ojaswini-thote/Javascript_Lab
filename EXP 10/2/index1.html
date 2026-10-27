@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Technical Workshop - Ticket Booking</title>
+
+
+    <style>
+
+        /* =====================================
+           GENERAL
+           ===================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background-color: #eef3f7;
+
+            color: #263746;
+
+            padding: 35px 20px 60px;
+        }
+
+
+        .page {
+            width: 100%;
+
+            max-width: 1050px;
+
+            margin: auto;
+        }
+
+
+        /* =====================================
+           HEADER
+           ===================================== */
+
+        .header {
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .eyebrow {
+            color: #277da1;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .header h1 {
+            margin: 0;
+
+            color: #17324d;
+
+            font-size: 44px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .header h1 span {
+            color: #2784a8;
+        }
+
+
+        .header p {
+            margin: 9px 0 0;
+
+            color: #6b7d8d;
+
+            font-size: 14px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =====================================
+           TECHNICAL ILLUSTRATION
+           ===================================== */
+
+        .tech-banner {
+            position: relative;
+
+            height: 180px;
+
+            background-color: #17324d;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            margin-bottom: 25px;
+
+            border: 1px solid #284d68;
+        }
+
+
+        /* Circuit lines */
+
+        .circuit {
+            position: absolute;
+
+            height: 2px;
+
+            background-color: #3c91b3;
+
+            opacity: 0.45;
+        }
+
+
+        .circuit.one {
+            width: 190px;
+
+            left: 5%;
+
+            top: 40px;
+        }
+
+
+        .circuit.two {
+            width: 130px;
+
+            right: 6%;
+
+            top: 70px;
+        }
+
+
+        .circuit.three {
+            width: 220px;
+
+            left: 10%;
+
+            bottom: 35px;
+        }
+
+
+        .circuit.four {
+            width: 160px;
+
+            right: 12%;
+
+            bottom: 45px;
+        }
+
+
+        /* Circuit nodes */
+
+        .node {
+            position: absolute;
+
+            width: 9px;
+
+            height: 9px;
+
+            border-radius: 50%;
+
+            background-color: #58b5d1;
+
+            box-shadow:
+                0 0 10px rgba(88, 181, 209, 0.6);
+        }
+
+
+        .node.n1 {
+            left: 23%;
+
+            top: 35px;
+        }
+
+
+        .node.n2 {
+            left: 42%;
+
+            top: 78px;
+        }
+
+
+        .node.n3 {
+            right: 25%;
+
+            top: 65px;
+        }
+
+
+        .node.n4 {
+            right: 15%;
+
+            bottom: 40px;
+        }
+
+
+        /* Laptop illustration */
+
+        .laptop {
+            position: absolute;
+
+            left: 50%;
+
+            top: 27px;
+
+            transform: translateX(-50%);
+
+            width: 170px;
+
+            height: 115px;
+        }
+
+
+        .screen {
+            width: 125px;
+
+            height: 78px;
+
+            margin: auto;
+
+            background-color: #f2f7fa;
+
+            border: 7px solid #9db4c3;
+
+            border-radius: 7px;
+        }
+
+
+        .screen-line {
+            width: 65px;
+
+            height: 5px;
+
+            background-color: #3a8aa8;
+
+            margin: 15px auto 7px;
+
+            border-radius: 3px;
+        }
+
+
+        .screen-line.small {
+            width: 45px;
+
+            margin-top: 7px;
+        }
+
+
+        .laptop-base {
+            width: 165px;
+
+            height: 9px;
+
+            background-color: #9db4c3;
+
+            border-radius: 3px 3px 10px 10px;
+
+            margin: 4px auto 0;
+        }
+
+
+        /* =====================================
+           MAIN CONTENT
+           ===================================== */
+
+        .content {
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================
+           WORKSHOP INFORMATION
+           ===================================== */
+
+        .info-card {
+            background-color: #ffffff;
+
+            border: 1px solid #d7e0e7;
+
+            border-radius: 15px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(35, 55, 75, 0.08);
+        }
+
+
+        .info-label {
+            color: #2784a8;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        .info-card h2 {
+            color: #17324d;
+
+            font-size: 27px;
+
+            margin: 8px 0 12px;
+        }
+
+
+        .info-card > p {
+            color: #718291;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 22px;
+        }
+
+
+        /* Information rows */
+
+        .info-row {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 13px 0;
+
+            border-top: 1px solid #e2e8ed;
+        }
+
+
+        .info-icon {
+            width: 40px;
+
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background-color: #e8f3f7;
+
+            color: #277da1;
+
+            border-radius: 9px;
+
+            font-size: 19px;
+
+            flex-shrink: 0;
+        }
+
+
+        .info-row small {
+            display: block;
+
+            color: #81909d;
+
+            font-size: 10px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .info-row strong {
+            color: #34495a;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================
+           FORM CARD
+           ===================================== */
+
+        .form-card {
+            background-color: white;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            border: 1px solid #d7e0e7;
+
+            box-shadow:
+                0 10px 30px
+                rgba(35, 55, 75, 0.1);
+        }
+
+
+        .form-header {
+            background-color: #17324d;
+
+            padding: 22px 30px;
+
+            color: white;
+        }
+
+
+        .form-header small {
+            color: #a9ccdc;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        .form-header h2 {
+            margin: 5px 0 0;
+
+            font-size: 23px;
+        }
+
+
+        .form-body {
+            padding: 24px 30px 28px;
+        }
+
+
+        /* =====================================
+           FORM ELEMENTS
+           ===================================== */
+
+        label {
+            display: block;
+
+            margin: 12px 0 6px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #334e68;
+        }
+
+
+        input,
+        select {
+            width: 100%;
+
+            padding: 11px 12px;
+
+            border: 1px solid #bcccdc;
+
+            border-radius: 8px;
+
+            background-color: #fbfdff;
+
+            color: #243447;
+
+            font-size: 14px;
+        }
+
+
+        input:focus,
+        select:focus {
+            outline: none;
+
+            border-color: #2f80a8;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(47, 128, 168, 0.12);
+        }
+
+
+        input::placeholder {
+            color: #9aa7b1;
+        }
+
+
+        /* =====================================
+           ERROR
+           ===================================== */
+
+        .error {
+            display: block;
+
+            min-height: 17px;
+
+            margin-top: 3px;
+
+            color: #c0392b;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================
+           TWO COLUMN ROW
+           ===================================== */
+
+        .row {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+
+        /* =====================================
+           SAVE DRAFT
+           ===================================== */
+
+        .draft-box {
+            margin-top: 14px;
+
+            padding: 13px;
+
+            background-color: #f1f7fa;
+
+            border: 1px solid #cbdfe8;
+
+            border-radius: 9px;
+        }
+
+
+        .draft-label {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin: 0;
+
+            color: #334e68;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .draft-label input {
+            width: auto;
+
+            margin: 0;
+
+            accent-color: #277da1;
+
+            cursor: pointer;
+        }
+
+
+        .draft-description {
+            margin: 6px 0 0 25px;
+
+            color: #718291;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================
+           BUTTONS
+           ===================================== */
+
+        .buttons {
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 12px;
+        }
+
+
+        button {
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        #submitBtn {
+            flex: 1;
+
+            background-color: #1f6f8b;
+
+            color: white;
+        }
+
+
+        #submitBtn:hover {
+            background-color: #185b73;
+        }
+
+
+        #clearBtn {
+            background-color: #e6edf3;
+
+            color: #334e68;
+        }
+
+
+        #clearBtn:hover {
+            background-color: #d5e0e8;
+        }
+
+
+        /* =====================================
+           SUCCESS MESSAGE
+           ===================================== */
+
+        .success {
+            display: none;
+
+            margin-top: 16px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            background-color: #e7f5ec;
+
+            border: 1px solid #b7dfc5;
+
+            color: #23643a;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================
+           STORAGE STATUS
+           ===================================== */
+
+        .storage-box {
+            margin-top: 14px;
+
+            padding: 14px;
+
+            background-color: #f8fafc;
+
+            border: 1px solid #d7e0e7;
+
+            border-radius: 10px;
+        }
+
+
+        .storage-title {
+            color: #334e68;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+        }
+
+
+        .storage-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 9px 0;
+
+            border-top: 1px solid #e1e7ec;
+        }
+
+
+        .storage-icon {
+            font-size: 13px;
+        }
+
+
+        .storage-item strong {
+            display: block;
+
+            color: #334e68;
+
+            font-size: 12px;
+        }
+
+
+        .storage-item small {
+            display: block;
+
+            margin-top: 2px;
+
+            color: #718291;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+           ===================================== */
+
+        @media (max-width: 800px) {
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+
+            .info-card {
+                order: 2;
+            }
+
+
+            .form-card {
+                order: 1;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 25px 12px 40px;
+            }
+
+
+            .header h1 {
+                font-size: 34px;
+            }
+
+
+            .tech-banner {
+                height: 150px;
+            }
+
+
+            .content {
+                gap: 15px;
+            }
+
+
+            .form-body,
+            .form-header,
+            .info-card {
+                padding: 22px;
+            }
+
+
+            .row {
+                grid-template-columns: 1fr;
+
+                gap: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="page">
+
+
+        <!-- =================================
+             HEADER
+             ================================= -->
+
+        <header class="header">
+
+            <div class="eyebrow">
+                TECH • LEARN • BUILD
+            </div>
+
+
+            <h1>
+                TECHNICAL <span>WORKSHOP</span>
+            </h1>
+
+
+            <p>
+                HANDS-ON LEARNING • SKILLS • INNOVATION
+            </p>
+
+        </header>
+
+
+
+        <!-- =================================
+             TECHNICAL ILLUSTRATION
+             ================================= -->
+
+        <section class="tech-banner">
+
+
+            <!-- Circuit lines -->
+
+            <div class="circuit one"></div>
+
+            <div class="circuit two"></div>
+
+            <div class="circuit three"></div>
+
+            <div class="circuit four"></div>
+
+
+            <!-- Circuit nodes -->
+
+            <div class="node n1"></div>
+
+            <div class="node n2"></div>
+
+            <div class="node n3"></div>
+
+            <div class="node n4"></div>
+
+
+            <!-- Laptop -->
+
+            <div class="laptop">
+
+                <div class="screen">
+
+                    <div class="screen-line"></div>
+
+                    <div class="screen-line small"></div>
+
+                    <div class="screen-line small"></div>
+
+                </div>
+
+
+                <div class="laptop-base"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             MAIN CONTENT
+             ================================= -->
+
+        <section class="content">
+
+
+            <!-- =================================
+                 WORKSHOP INFORMATION
+                 ================================= -->
+
+            <div class="info-card">
+
+
+                <div class="info-label">
+                    WORKSHOP DETAILS
+                </div>
+
+
+                <h2>
+                    Learn. Build. Innovate.
+                </h2>
+
+
+                <p>
+                    Register for a hands-on technical
+                    workshop and explore emerging
+                    technologies with practical learning
+                    activities.
+                </p>
+
+
+                <!-- Workshop -->
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        💻
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            FORMAT
+                        </small>
+
+                        <strong>
+                            Hands-on Technical Session
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Topics -->
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        ⚙️
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            TOPICS
+                        </small>
+
+                        <strong>
+                            AI • Web • Cyber • Data
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Entry -->
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        🎫
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            ENTRY
+                        </small>
+
+                        <strong>
+                            Registered Student Ticket
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 REGISTRATION FORM
+                 ================================= -->
+
+            <div class="form-card">
+
+
+                <div class="form-header">
+
+                    <small>
+                        WORKSHOP REGISTRATION
+                    </small>
+
+
+                    <h2>
+                        Book Your Ticket
+                    </h2>
+
+                </div>
+
+
+                <div class="form-body">
+
+
+                    <form
+                        id="workshopForm"
+                        novalidate
+                    >
+
+
+                        <!-- FULL NAME -->
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your full name"
+                        >
+
+
+                        <span
+                            class="error"
+                            id="nameError">
+                        </span>
+
+
+
+                        <!-- EMAIL -->
+
+                        <label for="email">
+                            Email ID
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="example@gmail.com"
+                        >
+
+
+                        <span
+                            class="error"
+                            id="emailError">
+                        </span>
+
+
+
+                        <!-- PHONE -->
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            maxlength="10"
+                            placeholder="Enter 10-digit phone number"
+                        >
+
+
+                        <span
+                            class="error"
+                            id="phoneError">
+                        </span>
+
+
+
+                        <!-- COLLEGE -->
+
+                        <label for="college">
+                            College / Institution
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="college"
+                            placeholder="Enter college name"
+                        >
+
+
+                        <span
+                            class="error"
+                            id="collegeError">
+                        </span>
+
+
+
+                        <!-- WORKSHOP -->
+
+                        <label for="workshop">
+                            Workshop Topic
+                        </label>
+
+
+                        <select id="workshop">
+
+                            <option value="">
+                                Select a workshop
+                            </option>
+
+
+                            <option
+                                value="Artificial Intelligence">
+
+                                Artificial Intelligence
+
+                            </option>
+
+
+                            <option
+                                value="Web Development">
+
+                                Web Development
+
+                            </option>
+
+
+                            <option
+                                value="Cyber Security">
+
+                                Cyber Security
+
+                            </option>
+
+
+                            <option
+                                value="Data Science">
+
+                                Data Science
+
+                            </option>
+
+                        </select>
+
+
+                        <span
+                            class="error"
+                            id="workshopError">
+                        </span>
+
+
+
+                        <!-- TICKETS + DATE -->
+
+                        <div class="row">
+
+
+                            <div>
+
+                                <label for="tickets">
+                                    Number of Tickets
+                                </label>
+
+
+                                <input
+                                    type="number"
+                                    id="tickets"
+                                    min="1"
+                                    max="5"
+                                    value="1"
+                                >
+
+
+                                <span
+                                    class="error"
+                                    id="ticketsError">
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <label for="date">
+                                    Workshop Date
+                                </label>
+
+
+                                <input
+                                    type="date"
+                                    id="date"
+                                >
+
+
+                                <span
+                                    class="error"
+                                    id="dateError">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             SAVE DRAFT OPTION
+                             ================================= -->
+
+                        <div class="draft-box">
+
+
+                            <label
+                                class="draft-label"
+                                for="saveDraft"
+                            >
+
+                                <input
+                                    type="checkbox"
+                                    id="saveDraft"
+                                >
+
+
+                                <span>
+                                    Save draft permanently on this device
+                                </span>
+
+                            </label>
+
+
+                            <p class="draft-description">
+
+                                Checked = Local Storage.
+                                Unchecked = Session Storage.
+                                Temporary drafts are cleared when
+                                the page is reloaded.
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             BUTTONS
+                             ================================= -->
+
+                        <div class="buttons">
+
+
+                            <button
+                                type="submit"
+                                id="submitBtn">
+
+                                🎫 Book Ticket
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                id="clearBtn">
+
+                                Clear
+
+                            </button>
+
+                        </div>
+
+
+
+                        <!-- SUCCESS -->
+
+                        <div
+                            class="success"
+                            id="successMessage">
+                        </div>
+
+
+
+                        <!-- =================================
+                             STORAGE STATUS
+                             ================================= -->
+
+                        <div class="storage-box">
+
+
+                            <div class="storage-title">
+
+                                💾 Browser Storage
+
+                            </div>
+
+
+                            <!-- SESSION STORAGE -->
+
+                            <div class="storage-item">
+
+                                <span class="storage-icon">
+                                    🟣
+                                </span>
+
+
+                                <div>
+
+                                    <strong>
+                                        Session Storage
+                                    </strong>
+
+
+                                    <small
+                                        id="sessionStatus">
+
+                                        No temporary draft
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- LOCAL STORAGE -->
+
+                            <div class="storage-item">
+
+                                <span class="storage-icon">
+                                    🟢
+                                </span>
+
+
+                                <div>
+
+                                    <strong>
+                                        Local Storage
+                                    </strong>
+
+
+                                    <small
+                                        id="localStatus">
+
+                                        No permanent draft
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script1.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Details using JSON</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #eef2f7;
+            color: #2d3a50;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1050px;
+            margin: auto;
+            background-color: #ffffff;
+            border: 1px solid #dfe5ee;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(50, 65, 90, 0.10);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 38px 45px;
+            background-color: #e9eef8;
+            border-bottom: 1px solid #d9e0eb;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            color: #435f98;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 38px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero p {
+            margin: 10px 0 0;
+            color: #718096;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .illustration {
+            width: 190px;
+            height: 150px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .illustration-card {
+            position: absolute;
+            right: 5px;
+            top: 15px;
+            width: 145px;
+            height: 105px;
+            background-color: #ffffff;
+            border: 1px solid #d2dbea;
+            border-radius: 14px;
+            box-shadow: 0 7px 18px rgba(55, 70, 95, 0.10);
+        }
+
+        .illustration-head {
+            position: absolute;
+            left: 50px;
+            top: 28px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: #8ca1c7;
+        }
+
+        .illustration-body {
+            position: absolute;
+            left: 40px;
+            top: 65px;
+            width: 55px;
+            height: 32px;
+            border-radius: 25px 25px 8px 8px;
+            background-color: #6c83ae;
+        }
+
+        .illustration-line {
+            position: absolute;
+            right: 15px;
+            height: 7px;
+            border-radius: 5px;
+            background-color: #dce3ef;
+        }
+
+        .line-one {
+            top: 35px;
+            width: 38px;
+        }
+
+        .line-two {
+            top: 52px;
+            width: 48px;
+        }
+
+        .line-three {
+            top: 69px;
+            width: 32px;
+        }
+
+        .json-badge {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 58px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #648a78;
+            color: white;
+            border-radius: 10px;
+            font-family: "Courier New", monospace;
+            font-size: 15px;
+            font-weight: bold;
+            box-shadow: 0 5px 12px rgba(65, 95, 80, 0.18);
+        }
+
+        .content {
+            padding: 35px 45px 40px;
+        }
+
+        .section-title {
+            margin: 0 0 7px;
+            color: #4b608d;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 24px;
+        }
+
+        .section-subtitle {
+            margin: 0 0 24px;
+            color: #8993a4;
+            font-size: 14px;
+        }
+
+        .form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 17px;
+            padding: 24px;
+            background-color: #f7f8fb;
+            border: 1px solid #e0e5ed;
+            border-radius: 14px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .input-group label {
+            color: #53627a;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #d1d8e4;
+            border-radius: 8px;
+            background-color: white;
+            color: #344158;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .form input:focus {
+            border-color: #7189b7;
+            box-shadow: 0 0 0 3px rgba(113, 137, 183, 0.11);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 24px 0 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background-color: #536fa9;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: #405b91;
+            transform: translateY(-1px);
+        }
+
+        #loadButton {
+            background-color: #648a78;
+        }
+
+        #loadButton:hover {
+            background-color: #4f7161;
+        }
+
+        #message {
+            min-height: 23px;
+            margin: 10px 0 20px;
+            text-align: center;
+            color: #536fa9;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .table-section {
+            margin-top: 25px;
+        }
+
+        .table-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 13px;
+        }
+
+        .table-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background-color: #e8edf6;
+            color: #536fa9;
+            font-size: 17px;
+        }
+
+        .table-title {
+            margin: 0;
+            color: #4b608d;
+            font-size: 19px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid #dce2eb;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        th {
+            padding: 14px;
+            text-align: left;
+            background-color: #e8edf6;
+            color: #435574;
+            font-size: 13px;
+            font-weight: 700;
+            border-bottom: 1px solid #d5dce7;
+        }
+
+        td {
+            padding: 14px;
+            color: #566277;
+            font-size: 14px;
+            border-bottom: 1px solid #e9edf3;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f4f9;
+        }
+
+        .json-section {
+            margin-top: 30px;
+            padding: 22px;
+            background-color: #f7f8fb;
+            border: 1px solid #dfe4ed;
+            border-radius: 13px;
+        }
+
+        .json-heading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .json-icon {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e3eee8;
+            color: #537866;
+            border-radius: 8px;
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+        }
+
+        .json-heading h3 {
+            margin: 0;
+            color: #536b9c;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 19px;
+        }
+
+        pre {
+            margin: 0;
+            padding: 16px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #ffffff;
+            border: 1px solid #e0e5ed;
+            border-radius: 8px;
+            color: #56647a;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .hero {
+                padding: 30px 25px;
+            }
+
+            .illustration {
+                display: none;
+            }
+
+            .content {
+                padding: 28px 20px;
+            }
+
+            .form {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th,
+            td {
+                padding: 10px 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="hero">
+
+            <div class="hero-text">
+                <h1>Employee Details </h1>
+
+                
+            </div>
+
+            <div class="illustration">
+
+                <div class="illustration-card">
+                    <div class="illustration-head"></div>
+                    <div class="illustration-body"></div>
+
+                    <div class="illustration-line line-one"></div>
+                    <div class="illustration-line line-two"></div>
+                    <div class="illustration-line line-three"></div>
+                </div>
+
+                <div class="json-badge">
+                    { }
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="content">
+
+            <h2 class="section-title">
+                Add Employee
+            </h2>
+
+            <p class="section-subtitle">
+                Enter the employee details below.
+            </p>
+
+            <div class="form">
+
+                <div class="input-group">
+                    <label for="employeeId">Employee ID</label>
+
+                    <input
+                        type="number"
+                        id="employeeId"
+                        placeholder="Enter employee ID"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="employeeName">Employee Name</label>
+
+                    <input
+                        type="text"
+                        id="employeeName"
+                        placeholder="Enter employee name"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="department">Department</label>
+
+                    <input
+                        type="text"
+                        id="department"
+                        placeholder="Enter department"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="salary">Salary</label>
+
+                    <input
+                        type="number"
+                        id="salary"
+                        placeholder="Enter salary"
+                    >
+                </div>
+
+            </div>
+
+            <div class="buttons">
+
+                <button id="addButton">
+                    Add Employee
+                </button>
+
+                <button id="loadButton">
+                    Load Employees
+                </button>
+
+            </div>
+
+            <div id="message"></div>
+
+            <div class="table-section">
+
+                <div class="table-header">
+
+                    <div class="table-icon">
+                        ♙
+                    </div>
+
+                    <h3 class="table-title">
+                        Employee Records
+                    </h3>
+
+                </div>
+
+                <table id="employeeTable">
+
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Employee Name</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="employeeTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="json-section">
+
+                <div class="json-heading">
+
+                    <div class="json-icon">
+                        { }
+                    </div>
+
+                    <h3>
+                        JSON Representation
+                    </h3>
+
+                </div>
+
+                <pre id="jsonData">No employee added yet.</pre>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script4.js"></script>
+
+</body>
+</html>

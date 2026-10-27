@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rakhi Riwaaz | Online Rakhi Store</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fff8f2;
+            color: #3f2929;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            background: linear-gradient(90deg, #8b1538, #c72c55);
+            color: white;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 8%;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 500;
+
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+        }
+
+        nav ul a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav ul a:hover {
+            color: #ffd166;
+        }
+
+        .cart-btn {
+            background: #ffd166;
+            color: #6b1730;
+
+            border: none;
+            border-radius: 25px;
+
+            padding: 11px 20px;
+
+            font-weight: bold;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .cart-btn:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+
+            min-height: 500px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 60px 10%;
+
+            background:
+
+                linear-gradient(
+                    rgba(255, 248, 242, 0.78),
+                    rgba(255, 248, 242, 0.78)
+                ),
+
+                url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        .hero-text {
+            max-width: 620px;
+        }
+
+
+        .hero h1 {
+
+            font-size: 52px;
+
+            color: #8b1538;
+
+            margin-bottom: 18px;
+
+            line-height: 1.2;
+        }
+
+
+        .hero h1 span {
+            color: #c78319;
+        }
+
+
+        .hero p {
+
+            font-size: 18px;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+        }
+
+
+        .shop-btn {
+
+            display: inline-block;
+
+            background: #8b1538;
+
+            color: white !important;
+
+            text-decoration: none;
+
+            padding: 14px 30px;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .shop-btn:hover {
+
+            background: #c72c55;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(139, 21, 56, 0.3);
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .features {
+
+            background: white;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            padding: 35px 8%;
+
+            gap: 20px;
+        }
+
+
+        .feature {
+
+            text-align: center;
+
+            padding: 15px;
+
+            border-right:
+                1px solid #eee;
+        }
+
+
+        .feature h3 {
+
+            color: #8b1538;
+
+            margin-bottom: 8px;
+        }
+
+
+        .feature p {
+
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= PRODUCTS ================= */
+
+        .products {
+
+            padding: 65px 8%;
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .section-title h2 {
+
+            font-size: 38px;
+
+            color: #8b1538;
+
+            margin-bottom: 10px;
+        }
+
+
+        .section-title p {
+
+            color: #666;
+        }
+
+
+        /* SEARCH */
+
+        .search-container {
+
+            max-width: 600px;
+
+            margin:
+                0 auto
+                30px;
+        }
+
+
+        #searchInput {
+
+            width: 100%;
+
+            padding: 15px 20px;
+
+            border-radius: 30px;
+
+            border:
+                1px solid #ddd;
+
+            outline: none;
+
+            font-size: 16px;
+
+            box-shadow:
+                0 3px 10px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* FILTERS */
+
+        .filters {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .filter-btn {
+
+            border: none;
+
+            padding: 10px 20px;
+
+            border-radius: 25px;
+
+            background: white;
+
+            color: #8b1538;
+
+            border:
+                1px solid #8b1538;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .filter-btn:hover,
+        .filter-btn.active {
+
+            background: #8b1538;
+
+            color: white;
+        }
+
+
+        /* PRODUCT GRID */
+
+        .product-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 25px;
+        }
+
+
+        /* PRODUCT CARD */
+
+        .product-card {
+
+            background: white;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0, 0, 0, 0.1);
+
+            text-align: center;
+
+            padding-bottom: 20px;
+
+            transition: 0.3s;
+        }
+
+
+        .product-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(139, 21, 56, 0.2);
+        }
+
+
+        .product-card img {
+
+            width: 100%;
+
+            height: 220px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        .wishlist {
+
+            position: absolute;
+
+            top: 12px;
+
+            right: 12px;
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            border: none;
+
+            background: white;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            box-shadow:
+                0 3px 10px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .wishlist.active {
+
+            color: #c72c55;
+        }
+
+
+        .product-card h3 {
+
+            margin:
+                18px
+                10px
+                8px;
+
+            color: #6b1730;
+
+            font-size: 19px;
+        }
+
+
+        .rating {
+
+            color: #f4b942;
+
+            font-size: 15px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .price {
+
+            color: #c72c55;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+
+        .product-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+        }
+
+
+        .add-cart {
+
+            background: #ffd166;
+
+            color: #6b1730;
+
+            border: none;
+
+            padding: 11px 18px;
+
+            border-radius: 22px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .add-cart:hover {
+
+            background: #f4b942;
+
+            transform: scale(1.05);
+        }
+
+
+        .view-btn {
+
+            background: white;
+
+            color: #8b1538;
+
+            border:
+                1px solid #8b1538;
+
+            padding: 10px 15px;
+
+            border-radius: 22px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= OFFER ================= */
+
+        .festival-banner {
+
+            margin:
+                20px 8%
+                60px;
+
+            padding: 50px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b1538,
+                    #c72c55
+                );
+
+            border-radius: 20px;
+
+            color: white;
+        }
+
+
+        .festival-banner h2 {
+
+            font-size: 34px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .festival-banner p {
+
+            font-size: 17px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .festival-banner button {
+
+            padding:
+                13px
+                30px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background: #ffd166;
+
+            color: #6b1730;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= CART ================= */
+
+        .cart-panel {
+
+            position: fixed;
+
+            top: 0;
+
+            right: -450px;
+
+            width: 420px;
+
+            max-width: 100%;
+
+            height: 100vh;
+
+            background: white;
+
+            z-index: 2000;
+
+            padding: 25px;
+
+            transition:
+                right
+                0.4s;
+
+            box-shadow:
+                -5px 0 25px
+                rgba(0, 0, 0, 0.2);
+
+            overflow-y: auto;
+        }
+
+
+        .cart-panel.active {
+
+            right: 0;
+        }
+
+
+        .cart-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding-bottom: 15px;
+
+            border-bottom:
+                1px solid #ddd;
+        }
+
+
+        .cart-header h2 {
+
+            color: #8b1538;
+        }
+
+
+        .close-btn {
+
+            background: none;
+
+            border: none;
+
+            font-size: 30px;
+
+            cursor: pointer;
+
+            color: #8b1538;
+        }
+
+
+        .cart-item {
+
+            padding:
+                15px
+                0;
+
+            border-bottom:
+                1px solid #eee;
+        }
+
+
+        .cart-item-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .cart-item-name {
+
+            font-weight: bold;
+
+            color: #6b1730;
+        }
+
+
+        .cart-item-price {
+
+            color: #c72c55;
+
+            margin-top: 5px;
+        }
+
+
+        .quantity-controls {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 10px;
+        }
+
+
+        .quantity-btn {
+
+            width: 30px;
+
+            height: 30px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #ffd166;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .remove-btn {
+
+            background: #c72c55;
+
+            color: white;
+
+            border: none;
+
+            padding: 7px 12px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+        }
+
+
+        .cart-total {
+
+            margin-top: 25px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #8b1538;
+        }
+
+
+        .checkout-btn {
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #8b1538;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .checkout-btn:hover {
+
+            background: #c72c55;
+        }
+
+
+        /* ================= MODAL ================= */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.6);
+
+            z-index: 3000;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+
+        .modal.active {
+
+            display: flex;
+        }
+
+
+        .modal-content {
+
+            background: white;
+
+            width: 480px;
+
+            max-width: 90%;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            position: relative;
+        }
+
+
+        .modal-content h2 {
+
+            color: #8b1538;
+
+            margin-bottom: 20px;
+        }
+
+
+        .modal-content input,
+        .modal-content textarea,
+        .modal-content select {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin: 8px 0;
+
+            border:
+                1px solid #ccc;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+        }
+
+
+        .modal-content textarea {
+
+            min-height: 90px;
+
+            resize: vertical;
+        }
+
+
+        .place-order-btn {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #8b1538;
+
+            color: white;
+
+            font-weight: bold;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+
+        /* QUICK VIEW */
+
+        .quick-image {
+
+            width: 100%;
+
+            height: 250px;
+
+            object-fit: cover;
+
+            border-radius: 10px;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            background: #4a1022;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 40px 20px;
+        }
+
+
+        footer h3 {
+
+            color: #ffd166;
+
+            margin-bottom: 10px;
+        }
+
+
+        footer p {
+
+            color: #f0dada;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            nav ul {
+
+                gap: 15px;
+            }
+
+
+            .hero {
+
+                text-align: center;
+
+                justify-content: center;
+
+                min-height: 430px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 40px;
+            }
+
+
+            .cart-panel {
+
+                width: 100%;
+
+                right: -100%;
+            }
+
+
+            .cart-panel.active {
+
+                right: 0;
+            }
+
+
+            .festival-banner {
+
+                padding: 35px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            🪷 Rakhi Riwaaz
+        </div>
+
+
+        <ul>
+
+            <li>
+                <a href="#">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="#products">
+                    Rakhis
+                </a>
+            </li>
+
+            <li>
+                <a href="#offers">
+                    Offers
+                </a>
+            </li>
+
+        </ul>
+
+
+        <button
+            class="cart-btn"
+            id="cartButton"
+        >
+            🛒 Cart (0)
+        </button>
+
+    </nav>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>
+                Celebrate the Bond of
+                <span>Love</span>
+            </h1>
+
+
+            <p>
+                Discover beautiful handcrafted Rakhis
+                and thoughtful gifts for this
+                Raksha Bandhan.
+            </p>
+
+
+            <a
+                href="#products"
+                class="shop-btn"
+            >
+                Shop Now →
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <h3>
+                🚚 Free Delivery
+            </h3>
+
+            <p>
+                Free shipping on selected orders
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>
+                🎁 Premium Packaging
+            </h3>
+
+            <p>
+                Beautiful festive gift packaging
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>
+                💖 Handcrafted Rakhis
+            </h3>
+
+            <p>
+                Made with love and tradition
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>
+                🔒 Secure Payment
+            </h3>
+
+            <p>
+                Safe and easy payments
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PRODUCTS -->
+
+    <section
+        class="products"
+        id="products"
+    >
+
+
+        <div class="section-title">
+
+            <h2>
+                Featured Rakhis
+            </h2>
+
+            <p>
+                Find the perfect Rakhi for your beloved brother
+            </p>
+
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+        <div class="search-container">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search for Rakhis..."
+            >
+
+        </div>
+
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <button
+                class="filter-btn active"
+                data-filter="all"
+            >
+                All
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="traditional"
+            >
+                Traditional
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="designer"
+            >
+                Designer
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="premium"
+            >
+                Premium
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="gifts"
+            >
+                Gifts
+            </button>
+
+        </div>
+
+
+
+        <!-- PRODUCT GRID -->
+
+        <div
+            class="product-grid"
+            id="productGrid"
+        >
+
+
+            <!-- PRODUCT 1 -->
+
+            <div
+                class="product-card"
+                data-category="traditional"
+            >
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+
+                <img
+                    src="traditional-rakhi.jpg"
+                    alt="Traditional Rakhi"
+                >
+
+
+                <h3>
+                    Traditional Rakhi
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+
+                <p class="price">
+                    ₹199
+                </p>
+
+
+                <div class="product-buttons">
+
+                    <button
+                        class="add-cart"
+                        data-product="Traditional Rakhi"
+                        data-price="199"
+                    >
+                        Add to Cart
+                    </button>
+
+
+                    <button
+                        class="view-btn"
+                        data-name="Traditional Rakhi"
+                        data-price="199"
+                        data-image="traditional-rakhi.jpg"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 2 -->
+
+            <div
+                class="product-card"
+                data-category="designer"
+            >
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+
+                <img
+                    src="designer-rakhi.jpg"
+                    alt="Designer Rakhi"
+                >
+
+
+                <h3>
+                    Designer Rakhi
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+
+                <p class="price">
+                    ₹299
+                </p>
+
+
+                <div class="product-buttons">
+
+                    <button
+                        class="add-cart"
+                        data-product="Designer Rakhi"
+                        data-price="299"
+                    >
+                        Add to Cart
+                    </button>
+
+
+                    <button
+                        class="view-btn"
+                        data-name="Designer Rakhi"
+                        data-price="299"
+                        data-image="designer-rakhi.jpg"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 3 -->
+
+            <div
+                class="product-card"
+                data-category="premium"
+            >
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+
+                <img
+                    src="silver-rakhi.jpg"
+                    alt="Premium Silver Rakhi"
+                >
+
+
+                <h3>
+                    Premium Silver Rakhi
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+
+                <p class="price">
+                    ₹499
+                </p>
+
+
+                <div class="product-buttons">
+
+                    <button
+                        class="add-cart"
+                        data-product="Premium Silver Rakhi"
+                        data-price="499"
+                    >
+                        Add to Cart
+                    </button>
+
+
+                    <button
+                        class="view-btn"
+                        data-name="Premium Silver Rakhi"
+                        data-price="499"
+                        data-image="silver-rakhi.jpg"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 4 -->
+
+            <div
+                class="product-card"
+                data-category="gifts"
+            >
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+
+                <img
+                    src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80"
+                    alt="Rakhi Gift Hamper"
+                >
+
+
+                <h3>
+                    Rakhi Gift Hamper
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+
+                <p class="price">
+                    ₹799
+                </p>
+
+
+                <div class="product-buttons">
+
+                    <button
+                        class="add-cart"
+                        data-product="Rakhi Gift Hamper"
+                        data-price="799"
+                    >
+                        Add to Cart
+                    </button>
+
+
+                    <button
+                        class="view-btn"
+                        data-name="Rakhi Gift Hamper"
+                        data-price="799"
+                        data-image="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 5 -->
+
+            <div
+                class="product-card"
+                data-category="designer"
+            >
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+
+                <img
+                    src="kundan-rakhi.jpg"
+                    alt="Kundan Rakhi"
+                >
+
+
+                <h3>
+                    Kundan Rakhi
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+
+                <p class="price">
+                    ₹349
+                </p>
+
+
+                <div class="product-buttons">
+
+                    <button
+                        class="add-cart"
+                        data-product="Kundan Rakhi"
+                        data-price="349"
+                    >
+                        Add to Cart
+                    </button>
+
+
+                    <button
+                        class="view-btn"
+                        data-name="Kundan Rakhi"
+                        data-price="349"
+                        data-image="kundan-rakhi.jpg"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 6 -->
+
+            <div
+                class="product-card"
+                data-category="premium"
+            >
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+
+                <img
+                    src="pearl-rakhi.jpg"
+                    alt="Pearl Rakhi"
+                >
+
+
+                <h3>
+                    Pearl Rakhi
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+
+                <p class="price">
+                    ₹399
+                </p>
+
+
+                <div class="product-buttons">
+
+                    <button
+                        class="add-cart"
+                        data-product="Pearl Rakhi"
+                        data-price="399"
+                    >
+                        Add to Cart
+                    </button>
+
+
+                    <button
+                        class="view-btn"
+                        data-name="Pearl Rakhi"
+                        data-price="399"
+                        data-image="pearl-rakhi.jpg"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 7 -->
+
+            <div
+                class="product-card"
+                data-category="traditional"
+            >
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+
+                <img
+                    src="rudraksha-rakhi.jpg"
+                    alt="Rudraksha Rakhi"
+                >
+
+
+                <h3>
+                    Rudraksha Rakhi
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+
+                <p class="price">
+                    ₹249
+                </p>
+
+
+                <div class="product-buttons">
+
+                    <button
+                        class="add-cart"
+                        data-product="Rudraksha Rakhi"
+                        data-price="249"
+                    >
+                        Add to Cart
+                    </button>
+
+
+                    <button
+                        class="view-btn"
+                        data-name="Rudraksha Rakhi"
+                        data-price="249"
+                        data-image="rudraksha-rakhi.jpg"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 8 -->
+
+            <div
+                class="product-card"
+                data-category="designer"
+            >
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+
+                <img
+                    src="kids-rakhi.jpg"
+                    alt="Kids Rakhi"
+                >
+
+
+                <h3>
+                    Kids Special Rakhi
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+
+                <p class="price">
+                    ₹279
+                </p>
+
+
+                <div class="product-buttons">
+
+                    <button
+                        class="add-cart"
+                        data-product="Kids Special Rakhi"
+                        data-price="279"
+                    >
+                        Add to Cart
+                    </button>
+
+
+                    <button
+                        class="view-btn"
+                        data-name="Kids Special Rakhi"
+                        data-price="279"
+                        data-image="kids-rakhi.jpg"
+                    >
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- OFFER -->
+
+    <section
+        class="festival-banner"
+        id="offers"
+    >
+
+        <h2>
+            ✨ Raksha Bandhan Special Offer ✨
+        </h2>
+
+
+        <p>
+            Get up to 20% discount on selected
+            Rakhi combos and gift hampers!
+        </p>
+
+
+        <button id="offerButton">
+            View Offers
+        </button>
+
+    </section>
+
+
+
+    <!-- CART -->
+
+    <div
+        class="cart-panel"
+        id="cartPanel"
+    >
+
+
+        <div class="cart-header">
+
+            <h2>
+                🛒 Your Cart
+            </h2>
+
+
+            <button
+                class="close-btn"
+                id="closeCart"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="cartItems">
+
+            <p>
+                Your cart is empty.
+            </p>
+
+        </div>
+
+
+        <div class="cart-total">
+
+            Total:
+            ₹<span id="cartTotal">
+                0
+            </span>
+
+        </div>
+
+
+        <button
+            class="checkout-btn"
+            id="checkoutButton"
+        >
+            Proceed to Checkout
+        </button>
+
+    </div>
+
+
+
+    <!-- CHECKOUT MODAL -->
+
+    <div
+        class="modal"
+        id="checkoutModal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                class="close-btn"
+                id="closeCheckout"
+                style="
+                    position:absolute;
+                    right:15px;
+                    top:10px;
+                "
+            >
+                ×
+            </button>
+
+
+            <h2>
+                Checkout
+            </h2>
+
+
+            <p
+                style="
+                    font-weight:bold;
+                    color:#8b1538;
+                    margin-bottom:15px;
+                "
+            >
+                Order Total:
+                ₹<span id="checkoutTotal">
+                    0
+                </span>
+            </p>
+
+
+            <form id="checkoutForm">
+
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Full Name"
+                    required
+                >
+
+
+                <input
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                >
+
+
+                <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    required
+                >
+
+
+                <textarea
+                    placeholder="Delivery Address"
+                    required
+                ></textarea>
+
+
+                <select required>
+
+                    <option value="">
+                        Select Payment Method
+                    </option>
+
+                    <option>
+                        Cash on Delivery
+                    </option>
+
+                    <option>
+                        UPI
+                    </option>
+
+                    <option>
+                        Credit/Debit Card
+                    </option>
+
+                </select>
+
+
+                <button
+                    type="submit"
+                    class="place-order-btn"
+                >
+                    Place Order
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUICK VIEW MODAL -->
+
+    <div
+        class="modal"
+        id="quickViewModal"
+    >
+
+        <div class="modal-content">
+
+
+            <button
+                class="close-btn"
+                id="closeQuickView"
+                style="
+                    position:absolute;
+                    right:15px;
+                    top:10px;
+                "
+            >
+                ×
+            </button>
+
+
+            <img
+                id="quickImage"
+                class="quick-image"
+                src=""
+                alt=""
+            >
+
+
+            <h2
+                id="quickName"
+            >
+            </h2>
+
+
+            <p
+                id="quickPrice"
+                class="price"
+            >
+            </p>
+
+
+            <p>
+                A beautiful handcrafted Rakhi,
+                perfect for celebrating the
+                special bond between brother
+                and sister.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+            🪷 Rakhi Riwaaz
+        </h3>
+
+
+        <p>
+            Celebrating the beautiful bond
+            between brothers and sisters.
+        </p>
+
+
+        <br>
+
+
+        <p>
+            © 2026 Rakhi Riwaaz |
+            Made with ❤️ for Raksha Bandhan
+        </p>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

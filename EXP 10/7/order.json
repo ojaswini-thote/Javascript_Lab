@@ -1,0 +1,42 @@
+[
+    {
+        "orderId": 1001,
+        "customerName": "Aarav Sharma",
+        "foodItem": "Margherita Pizza",
+        "quantity": 2,
+        "totalAmount": 600,
+        "orderStatus": "Preparing"
+    },
+    {
+        "orderId": 1002,
+        "customerName": "Priya Patil",
+        "foodItem": "Veg Burger",
+        "quantity": 1,
+        "totalAmount": 180,
+        "orderStatus": "Ready"
+    },
+    {
+        "orderId": 1003,
+        "customerName": "Rohan Mehta",
+        "foodItem": "Paneer Biryani",
+        "quantity": 2,
+        "totalAmount": 500,
+        "orderStatus": "Delivered"
+    },
+    {
+        "orderId": 1004,
+        "customerName": "Sneha Joshi",
+        "foodItem": "White Sauce Pasta",
+        "quantity": 1,
+        "totalAmount": 250,
+        "orderStatus": "Preparing"
+    },
+    {
+        "orderId": 1005,
+        "customerName": "Aditya Kulkarni",
+        "foodItem": "Masala Dosa",
+        "quantity": 2,
+        "totalAmount": 240,
+        "orderStatus": "Delivered"
+    }
+]

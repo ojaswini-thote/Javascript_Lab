@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Concert Night - Registration</title>
+
+
+    <style>
+
+        /* =====================================
+           GENERAL
+           ===================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background-color: #100d18;
+
+            color: white;
+
+            padding: 35px 20px 60px;
+        }
+
+
+        .page {
+            width: 100%;
+
+            max-width: 1050px;
+
+            margin: auto;
+        }
+
+
+        /* =====================================
+           MUSIC NOTES
+           ===================================== */
+
+        .note {
+            position: fixed;
+
+            color: #a878d8;
+
+            opacity: 0.18;
+
+            font-size: 45px;
+
+            z-index: 0;
+
+            pointer-events: none;
+        }
+
+
+        .note.one {
+            top: 18%;
+            left: 6%;
+        }
+
+
+        .note.two {
+            top: 45%;
+            right: 6%;
+
+            font-size: 60px;
+        }
+
+
+        .note.three {
+            bottom: 15%;
+            left: 10%;
+
+            font-size: 35px;
+        }
+
+
+        .note.four {
+            bottom: 25%;
+            right: 12%;
+
+            font-size: 42px;
+        }
+
+
+        /* =====================================
+           HEADER
+           ===================================== */
+
+        .header {
+            position: relative;
+
+            z-index: 1;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .eyebrow {
+            color: #d8b4ff;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .header h1 {
+            margin: 0;
+
+            font-size: 48px;
+
+            letter-spacing: 2px;
+        }
+
+
+        .header h1 span {
+            color: #c084fc;
+        }
+
+
+        .header p {
+            margin: 9px 0 0;
+
+            color: #aaa3b5;
+
+            letter-spacing: 2px;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================
+           STAGE
+           ===================================== */
+
+        .stage {
+            position: relative;
+
+            z-index: 1;
+
+            height: 175px;
+
+            background-color: #181421;
+
+            border: 1px solid #30273d;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            margin-bottom: 24px;
+        }
+
+
+        .beam {
+            position: absolute;
+
+            top: 0;
+
+            width: 160px;
+
+            height: 180px;
+
+            background-color:
+                rgba(176, 112, 230, 0.08);
+
+            transform: skewX(-15deg);
+        }
+
+
+        .beam.left {
+            left: 22%;
+        }
+
+
+        .beam.right {
+            right: 22%;
+
+            transform: skewX(15deg);
+        }
+
+
+        .lights {
+            position: absolute;
+
+            top: 18px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            display: flex;
+
+            gap: 24px;
+        }
+
+
+        .light {
+            width: 11px;
+
+            height: 11px;
+
+            border-radius: 50%;
+
+            background-color: #f5d77a;
+
+            box-shadow:
+                0 0 13px #f5d77a;
+        }
+
+
+        /* =====================================
+           MICROPHONE
+           ===================================== */
+
+        .mic {
+            position: absolute;
+
+            left: 50%;
+
+            top: 38px;
+
+            transform: translateX(-50%);
+
+            width: 70px;
+
+            height: 115px;
+        }
+
+
+        .mic-head {
+            width: 40px;
+
+            height: 58px;
+
+            border: 6px solid #ddd4e8;
+
+            border-radius: 22px;
+
+            margin: auto;
+        }
+
+
+        .mic-neck {
+            width: 6px;
+
+            height: 43px;
+
+            background-color: #ddd4e8;
+
+            margin: -2px auto 0;
+        }
+
+
+        .mic-base {
+            width: 58px;
+
+            height: 6px;
+
+            border-radius: 5px;
+
+            background-color: #ddd4e8;
+
+            margin: 0 auto;
+        }
+
+
+        /* =====================================
+           MAIN CONTENT
+           ===================================== */
+
+        .content {
+            position: relative;
+
+            z-index: 1;
+
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================
+           EVENT CARD
+           ===================================== */
+
+        .event-card {
+            background-color: #1a1723;
+
+            border: 1px solid #352d40;
+
+            border-radius: 15px;
+
+            padding: 28px;
+        }
+
+
+        .event-card .label {
+            color: #c084fc;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        .event-card h2 {
+            margin: 8px 0 12px;
+
+            color: white;
+
+            font-size: 27px;
+        }
+
+
+        .event-card > p {
+            color: #aaa3b3;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+
+            margin: 0 0 22px;
+        }
+
+
+        .detail {
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+
+            border-top: 1px solid #302938;
+
+            padding: 14px 0;
+        }
+
+
+        .icon {
+            width: 38px;
+
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background-color: #282132;
+
+            border-radius: 8px;
+
+            font-size: 18px;
+
+            flex-shrink: 0;
+        }
+
+
+        .detail small {
+            display: block;
+
+            color: #81778b;
+
+            font-size: 10px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .detail strong {
+            color: #eeeaf2;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================
+           REGISTRATION TICKET
+           ===================================== */
+
+        .ticket {
+            background-color: white;
+
+            color: #302936;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.35);
+        }
+
+
+        .ticket-top {
+            background-color: #7046a5;
+
+            padding: 22px 30px;
+        }
+
+
+        .ticket-top small {
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            color: #eee4fa;
+        }
+
+
+        .ticket-top h2 {
+            margin: 5px 0 0;
+
+            font-size: 24px;
+
+            color: white;
+        }
+
+
+        .ticket-body {
+            padding: 24px 30px 28px;
+        }
+
+
+        /* =====================================
+           FORM
+           ===================================== */
+
+        label {
+            display: block;
+
+            margin: 12px 0 6px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #493d52;
+        }
+
+
+        input,
+        select {
+            width: 100%;
+
+            padding: 11px 12px;
+
+            border: 1px solid #d4cadb;
+
+            border-radius: 8px;
+
+            background-color: #fbfafd;
+
+            color: #302936;
+
+            font-size: 14px;
+        }
+
+
+        input:focus,
+        select:focus {
+            outline: none;
+
+            border-color: #7652a8;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(118, 82, 168, 0.12);
+        }
+
+
+        input::placeholder {
+            color: #aaa3ad;
+        }
+
+
+        /* =====================================
+           TWO COLUMN ROW
+           ===================================== */
+
+        .row {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+
+        /* =====================================
+           ERROR
+           ===================================== */
+
+        .error {
+            display: block;
+
+            min-height: 16px;
+
+            margin-top: 3px;
+
+            color: #c0392b;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================
+           SAVE DRAFT OPTION
+           ===================================== */
+
+        .draft-box {
+            margin-top: 14px;
+
+            padding: 13px;
+
+            background-color: #f7f4fa;
+
+            border: 1px solid #ded5e5;
+
+            border-radius: 9px;
+        }
+
+
+        .draft-label {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin: 0;
+
+            color: #493d52;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .draft-label input {
+            width: auto;
+
+            margin: 0;
+
+            accent-color: #7046a5;
+
+            cursor: pointer;
+        }
+
+
+        .draft-description {
+            margin: 6px 0 0 25px;
+
+            color: #77717c;
+
+            font-size: 11px;
+
+            line-height: 1.4;
+        }
+
+
+        /* =====================================
+           STORAGE STATUS
+           ===================================== */
+
+        .storage-box {
+            margin-top: 14px;
+
+            padding: 14px;
+
+            background-color: #f7f4fa;
+
+            border: 1px solid #ded5e5;
+
+            border-radius: 10px;
+        }
+
+
+        .storage-title {
+            color: #493d52;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+
+        .storage-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 9px 0;
+
+            border-top: 1px solid #e5dfe9;
+        }
+
+
+        .storage-icon {
+            font-size: 13px;
+        }
+
+
+        .storage-item strong {
+            display: block;
+
+            color: #493d52;
+
+            font-size: 12px;
+        }
+
+
+        .storage-item small {
+            display: block;
+
+            margin-top: 2px;
+
+            color: #77717c;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================
+           BUTTONS
+           ===================================== */
+
+        .buttons {
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 10px;
+        }
+
+
+        button {
+            border: none;
+
+            border-radius: 8px;
+
+            padding: 12px 18px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        #submitBtn {
+            flex: 1;
+
+            background-color: #7046a5;
+
+            color: white;
+        }
+
+
+        #submitBtn:hover {
+            background-color: #5d398c;
+        }
+
+
+        #clearBtn {
+            background-color: #eeeaf1;
+
+            color: #493d52;
+        }
+
+
+        #clearBtn:hover {
+            background-color: #ddd5e2;
+        }
+
+
+        /* =====================================
+           SUCCESS MESSAGE
+           ===================================== */
+
+        .success {
+            display: none;
+
+            margin-top: 16px;
+
+            padding: 11px;
+
+            border-radius: 8px;
+
+            background-color: #e7f5ec;
+
+            border: 1px solid #b7dfc5;
+
+            color: #23643a;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+           ===================================== */
+
+        @media (max-width: 800px) {
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+
+            .event-card {
+                order: 2;
+            }
+
+
+            .ticket {
+                order: 1;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 25px 12px 40px;
+            }
+
+
+            .header h1 {
+                font-size: 35px;
+            }
+
+
+            .stage {
+                height: 145px;
+            }
+
+
+            .content {
+                gap: 15px;
+            }
+
+
+            .ticket-body,
+            .ticket-top,
+            .event-card {
+                padding: 22px;
+            }
+
+
+            .row {
+                grid-template-columns: 1fr;
+
+                gap: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         DECORATIVE NOTES
+         ===================================== -->
+
+    <div class="note one">♪</div>
+
+    <div class="note two">♫</div>
+
+    <div class="note three">♪</div>
+
+    <div class="note four">♫</div>
+
+
+
+    <main class="page">
+
+
+        <!-- =====================================
+             HEADER
+             ===================================== -->
+
+        <header class="header">
+
+            <div class="eyebrow">
+                LIVE EVENT REGISTRATION
+            </div>
+
+
+            <h1>
+                CONCERT <span>NIGHT</span>
+            </h1>
+
+
+            <p>
+                MUSIC • LIGHTS • EXPERIENCE
+            </p>
+
+        </header>
+
+
+
+        <!-- =====================================
+             STAGE ILLUSTRATION
+             ===================================== -->
+
+        <section class="stage">
+
+            <div class="beam left"></div>
+
+            <div class="beam right"></div>
+
+
+            <div class="lights">
+
+                <div class="light"></div>
+
+                <div class="light"></div>
+
+                <div class="light"></div>
+
+                <div class="light"></div>
+
+                <div class="light"></div>
+
+            </div>
+
+
+            <div class="mic">
+
+                <div class="mic-head"></div>
+
+                <div class="mic-neck"></div>
+
+                <div class="mic-base"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CONTENT
+             ===================================== -->
+
+        <section class="content">
+
+
+            <!-- =================================
+                 EVENT INFORMATION
+                 ================================= -->
+
+            <div class="event-card">
+
+                <div class="label">
+                    THE EVENT
+                </div>
+
+
+                <h2>
+                    Live Music Experience
+                </h2>
+
+
+                <p>
+                    Get ready for an unforgettable evening
+                    filled with live performances, music,
+                    lights and great energy.
+                </p>
+
+
+                <div class="detail">
+
+                    <div class="icon">
+                        📅
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            EVENT
+                        </small>
+
+                        <strong>
+                            Concert Night 2026
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="icon">
+                        🎤
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            FEATURING
+                        </small>
+
+                        <strong>
+                            Live Music Artists
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="icon">
+                        🎟️
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            ENTRY
+                        </small>
+
+                        <strong>
+                            Digital Concert Pass
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 REGISTRATION TICKET
+                 ================================= -->
+
+            <div class="ticket">
+
+
+                <div class="ticket-top">
+
+                    <small>
+                        DIGITAL ENTRY PASS
+                    </small>
+
+
+                    <h2>
+                        Register Your Spot
+                    </h2>
+
+                </div>
+
+
+                <div class="ticket-body">
+
+
+                    <form
+                        id="concertForm"
+                        novalidate
+                    >
+
+
+                        <!-- FULL NAME -->
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your full name"
+                        >
+
+
+                        <span
+                            class="error"
+                            id="nameError">
+                        </span>
+
+
+
+                        <!-- EMAIL -->
+
+                        <label for="email">
+                            Email ID
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="example@gmail.com"
+                        >
+
+
+                        <span
+                            class="error"
+                            id="emailError">
+                        </span>
+
+
+
+                        <!-- PHONE -->
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            maxlength="10"
+                            placeholder="Enter 10-digit phone number"
+                        >
+
+
+                        <span
+                            class="error"
+                            id="phoneError">
+                        </span>
+
+
+
+                        <!-- CONCERT -->
+
+                        <label for="concert">
+                            Concert
+                        </label>
+
+
+                        <select id="concert">
+
+                            <option
+                                value="Live Rock Night"
+                                selected>
+
+                                Live Rock Night
+
+                            </option>
+
+
+                            <option
+                                value="Bollywood Beats">
+
+                                Bollywood Beats
+
+                            </option>
+
+
+                            <option
+                                value="Indie Music Evening">
+
+                                Indie Music Evening
+
+                            </option>
+
+
+                            <option
+                                value="Classical Fusion">
+
+                                Classical Fusion
+
+                            </option>
+
+                        </select>
+
+
+                        <span
+                            class="error"
+                            id="concertError">
+                        </span>
+
+
+
+                        <!-- TICKET TYPE -->
+
+                        <label for="ticketType">
+                            Ticket Type
+                        </label>
+
+
+                        <select id="ticketType">
+
+                            <option
+                                value="Regular"
+                                selected>
+
+                                Regular
+
+                            </option>
+
+
+                            <option
+                                value="VIP">
+
+                                VIP
+
+                            </option>
+
+
+                            <option
+                                value="Premium">
+
+                                Premium
+
+                            </option>
+
+                        </select>
+
+
+                        <span
+                            class="error"
+                            id="ticketTypeError">
+                        </span>
+
+
+
+                        <!-- TICKETS + DATE -->
+
+                        <div class="row">
+
+
+                            <div>
+
+                                <label for="tickets">
+                                    Number of Tickets
+                                </label>
+
+
+                                <input
+                                    type="number"
+                                    id="tickets"
+                                    min="1"
+                                    max="6"
+                                    value="1"
+                                >
+
+
+                                <span
+                                    class="error"
+                                    id="ticketsError">
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <label for="date">
+                                    Concert Date
+                                </label>
+
+
+                                <input
+                                    type="date"
+                                    id="date"
+                                >
+
+
+                                <span
+                                    class="error"
+                                    id="dateError">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             SAVE DRAFT OPTION
+                             ================================= -->
+
+                        <div class="draft-box">
+
+                            <label
+                                class="draft-label"
+                                for="saveDraft"
+                            >
+
+                                <input
+                                    type="checkbox"
+                                    id="saveDraft"
+                                >
+
+                                <span>
+                                    Save draft permanently on this device
+                                </span>
+
+                            </label>
+
+
+                            <p class="draft-description">
+
+                                If checked, your draft is stored in
+                                Local Storage. If unchecked, it is
+                                stored temporarily in Session Storage
+                                and cleared when this page is reloaded.
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             BUTTONS
+                             ================================= -->
+
+                        <div class="buttons">
+
+
+                            <button
+                                type="submit"
+                                id="submitBtn"
+                            >
+
+                                🎟 Register Now
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                id="clearBtn"
+                            >
+
+                                Clear
+
+                            </button>
+
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             SUCCESS
+                             ================================= -->
+
+                        <div
+                            class="success"
+                            id="successMessage">
+                        </div>
+
+
+
+                        <!-- =================================
+                             STORAGE STATUS
+                             ================================= -->
+
+                        <div class="storage-box">
+
+
+                            <div class="storage-title">
+
+                                💾 Browser Storage
+
+                            </div>
+
+
+                            <!-- SESSION -->
+
+                            <div class="storage-item">
+
+                                <span class="storage-icon">
+                                    🟣
+                                </span>
+
+
+                                <div>
+
+                                    <strong>
+                                        Session Storage
+                                    </strong>
+
+
+                                    <small
+                                        id="sessionStatus">
+
+                                        No temporary draft
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- LOCAL -->
+
+                            <div class="storage-item">
+
+                                <span class="storage-icon">
+                                    🟢
+                                </span>
+
+
+                                <div>
+
+                                    <strong>
+                                        Local Storage
+                                    </strong>
+
+
+                                    <small
+                                        id="localStatus">
+
+                                        No permanent draft
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script2.js"></script>
+
+</body>
+
+</html>

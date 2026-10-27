@@ -1,0 +1,1083 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart India Hackathon | Innovation for India</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #102b50;
+            --blue: #175da8;
+            --saffron: #ed8b27;
+            --green: #268452;
+            --cream: #fbfaf7;
+            --muted: #687487;
+            --line: #e2e7ee;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--navy);
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button, input, textarea {
+            font: inherit;
+        }
+
+        .top-strip {
+            height: 6px;
+            background: linear-gradient(90deg, #ed8b27 0 33.33%, #fff 33.33% 66.66%, #268452 66.66%);
+        }
+
+        .official-note {
+            padding: 9px 5%;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            background: #f0f3f7;
+            color: #5c6878;
+            font-size: 10px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: white;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            max-width: 1240px;
+            min-height: 94px;
+            margin: auto;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .brand-mark {
+            width: 65px;
+            height: 65px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border: 2px solid #e1e7ef;
+            border-radius: 50%;
+            background: #f7f9fc;
+            font-size: 30px;
+        }
+
+        .brand-name {
+            font: 700 21px/1.15 "Space Grotesk", sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-name span {
+            color: var(--blue);
+        }
+
+        .brand-subtitle {
+            margin-top: 6px;
+            color: #67768a;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        nav a {
+            color: #46566c;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        nav a:hover {
+            color: var(--blue);
+        }
+
+        .nav-button {
+            padding: 12px 16px;
+            border-radius: 5px;
+            background: var(--navy);
+            color: white;
+        }
+
+        .menu-button {
+            display: none;
+            padding: 8px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: white;
+            color: var(--navy);
+            font-size: 22px;
+        }
+
+        main {
+            max-width: 1240px;
+            margin: auto;
+            padding: 0 28px 60px;
+        }
+
+        .hero {
+            min-height: 480px;
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            border: 1px solid #e1e6ed;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .hero-copy {
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 26px;
+            height: 3px;
+            background: var(--saffron);
+        }
+
+        h1, h2, h3 {
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        h1 {
+            margin-top: 23px;
+            font-size: clamp(42px, 5.2vw, 66px);
+            line-height: 1.06;
+            letter-spacing: -2.8px;
+        }
+
+        h1 .highlight {
+            color: var(--blue);
+        }
+
+        .hero-copy > p {
+            max-width: 490px;
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 27px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 17px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .2s, background .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: white;
+        }
+
+        .btn-outline {
+            border-color: #cdd7e3;
+            background: white;
+            color: var(--navy);
+        }
+
+        .hero-footnote {
+            margin-top: 28px;
+            color: #8290a0;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .hero-visual {
+            min-height: 440px;
+            padding: 25px;
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+            background: #edf3fa;
+        }
+
+        .visual-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(#d4deeb 1px, transparent 1px),
+                linear-gradient(90deg, #d4deeb 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: .65;
+        }
+
+        .india-map {
+            width: 245px;
+            height: 285px;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(155deg, #f3a343 0 32%, #fff 32% 66%, #5ba778 66%);
+            clip-path: polygon(29% 0, 46% 8%, 54% 19%, 74% 25%, 66% 40%, 79% 53%, 64% 63%, 60% 76%, 46% 100%, 36% 79%, 28% 64%, 17% 54%, 22% 39%, 12% 25%, 22% 16%);
+            filter: drop-shadow(0 15px 15px #152c4a18);
+        }
+
+        .chakra {
+            width: 68px;
+            height: 68px;
+            display: grid;
+            place-items: center;
+            border: 3px solid #175da8;
+            border-radius: 50%;
+            color: #175da8;
+            font-size: 52px;
+            line-height: 1;
+            background: #ffffffd9;
+        }
+
+        .visual-label {
+            position: absolute;
+            z-index: 2;
+            padding: 12px 15px;
+            border: 1px solid #e0e7ef;
+            border-radius: 6px;
+            background: white;
+            box-shadow: 0 8px 22px #1c345410;
+        }
+
+        .visual-label.top {
+            top: 45px;
+            right: 20px;
+        }
+
+        .visual-label.bottom {
+            bottom: 40px;
+            left: 18px;
+        }
+
+        .visual-label small {
+            display: block;
+            color: #7c899a;
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .visual-label strong {
+            display: block;
+            margin-top: 3px;
+            font-size: 11px;
+        }
+
+        .visual-label .orange {
+            color: var(--saffron);
+        }
+
+        .visual-label .green {
+            color: var(--green);
+        }
+
+        section.content {
+            padding-top: 75px;
+            scroll-margin-top: 90px;
+        }
+
+        .section-top {
+            margin-bottom: 27px;
+        }
+
+        .section-index {
+            margin-bottom: 10px;
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+        }
+
+        .section-top h2 {
+            font-size: clamp(31px, 4vw, 43px);
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+        }
+
+        .section-top p {
+            max-width: 630px;
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .info-card {
+            padding: 25px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            background: white;
+        }
+
+        .info-card .icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 5px;
+            background: #edf3fa;
+            color: var(--blue);
+            font-size: 22px;
+        }
+
+        .info-card h3 {
+            margin-top: 17px;
+            font-size: 17px;
+        }
+
+        .info-card p {
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.9;
+        }
+
+        .themes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .theme-card {
+            min-height: 210px;
+            padding: 19px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            background: white;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .theme-card:hover, .problem-card:hover, .step:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px #1734550d;
+        }
+
+        .theme-number {
+            color: #8a96a6;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .theme-illustration {
+            height: 85px;
+            display: grid;
+            place-items: center;
+            color: var(--blue);
+            font-size: 46px;
+        }
+
+        .theme-card:nth-child(2) .theme-illustration { color: var(--green); }
+        .theme-card:nth-child(3) .theme-illustration { color: var(--saffron); }
+        .theme-card:nth-child(4) .theme-illustration { color: #6d66ae; }
+
+        .theme-card h3 {
+            font-size: 14px;
+        }
+
+        .theme-card p {
+            margin-top: 7px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.8;
+        }
+
+        .process {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .step {
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            background: white;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .step-number {
+            color: var(--saffron);
+            font: 700 28px "Space Grotesk", sans-serif;
+        }
+
+        .step h3 {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .step p {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.8;
+        }
+
+        .problem-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 17px;
+        }
+
+        #searchProblems {
+            min-width: 230px;
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #d7dfe8;
+            border-radius: 5px;
+            background: white;
+            outline: none;
+            font-size: 11px;
+        }
+
+        #searchProblems:focus {
+            border-color: var(--blue);
+        }
+
+        .filters {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .filter {
+            padding: 10px 12px;
+            border: 1px solid #d7dfe8;
+            border-radius: 5px;
+            background: white;
+            color: #4e5d70;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .filter.active {
+            background: var(--navy);
+            color: white;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .problem-card {
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            background: white;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .problem-card[hidden] {
+            display: none;
+        }
+
+        .problem-tag {
+            display: inline-block;
+            padding: 5px 8px;
+            border-radius: 3px;
+            background: #edf3fa;
+            color: var(--blue);
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .problem-card h3 {
+            margin-top: 15px;
+            font-size: 17px;
+        }
+
+        .problem-card p {
+            min-height: 60px;
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .problem-card .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .notice {
+            margin-top: 17px;
+            padding: 14px 16px;
+            border-left: 3px solid var(--saffron);
+            background: #fff3e5;
+            color: #745b43;
+            font-size: 10px;
+            line-height: 1.8;
+        }
+
+        .team-banner {
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 1fr 0.7fr;
+            align-items: center;
+            gap: 20px;
+            border-radius: 7px;
+            background: var(--navy);
+            color: white;
+        }
+
+        .team-banner h2 {
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.15;
+        }
+
+        .team-banner p {
+            max-width: 520px;
+            margin-top: 13px;
+            color: #d0d9e5;
+            font-size: 11px;
+            line-height: 1.9;
+        }
+
+        .team-art {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 170px;
+        }
+
+        .team-person {
+            width: 65px;
+            height: 100px;
+            margin: 0 -5px;
+            display: grid;
+            place-items: center;
+            border-radius: 35px 35px 8px 8px;
+            background: #f3b06b;
+            color: var(--navy);
+            font-size: 25px;
+        }
+
+        .team-person:nth-child(2) {
+            height: 125px;
+            z-index: 2;
+            background: white;
+        }
+
+        .team-person:nth-child(3) {
+            background: #70b58b;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1fr;
+            gap: 35px;
+        }
+
+        .contact-copy p {
+            margin-top: 13px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        form {
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            background: white;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        input, textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 12px;
+            border: 1px solid #dce3eb;
+            border-radius: 5px;
+            background: #fdfdfd;
+            outline: none;
+            font-size: 11px;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--blue);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        form button {
+            width: 100%;
+        }
+
+        #formMessage {
+            margin-top: 12px;
+            color: var(--green);
+            font-size: 11px;
+        }
+
+        .demo-note {
+            margin-top: 10px;
+            color: #8b95a2;
+            font-size: 9px;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            background: white;
+        }
+
+        .footer-inner {
+            max-width: 1240px;
+            margin: auto;
+            padding: 25px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            color: #718094;
+            font-size: 10px;
+        }
+
+        .footer-brand {
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .footer-brand span {
+            color: var(--saffron);
+        }
+
+        @media (max-width: 900px) {
+            nav { gap: 12px; }
+            nav a { font-size: 10px; }
+            .brand-name { font-size: 17px; }
+            .themes, .process { grid-template-columns: repeat(2, 1fr); }
+            .hero-copy { padding: 35px 25px; }
+        }
+
+        @media (max-width: 650px) {
+            .official-note { justify-content: center; text-align: center; }
+            .nav-inner { min-height: 78px; padding: 10px 16px; }
+            .brand-mark { width: 49px; height: 49px; font-size: 24px; }
+            .brand-name { font-size: 15px; }
+            .brand-subtitle { font-size: 7px; letter-spacing: .6px; }
+            .menu-button { display: block; }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                padding: 20px;
+                flex-direction: column;
+                align-items: stretch;
+                background: white;
+                border-bottom: 1px solid var(--line);
+            }
+
+            nav.open { display: flex; }
+            nav .nav-button { text-align: center; }
+
+            main { padding: 0 14px 40px; }
+            .hero { grid-template-columns: 1fr; margin-top: 14px; }
+            .hero-copy { padding: 35px 22px 25px; }
+            h1 { font-size: 48px; }
+            .hero-visual { min-height: 340px; }
+            .india-map { transform: scale(.85); }
+            .visual-label.top { right: 10px; }
+            .visual-label.bottom { left: 10px; }
+
+            section.content { padding-top: 55px; }
+            .about-grid, .contact-grid, .team-banner { grid-template-columns: 1fr; }
+            .themes, .process, .problem-grid { grid-template-columns: 1fr; }
+            .theme-card { min-height: 190px; }
+            .team-banner { padding: 25px; }
+            .team-art { min-height: 140px; }
+            .footer-inner { padding: 22px 16px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition: none !important; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-strip"></div>
+
+    <div class="official-note">
+        <span>Student innovation showcase inspired by Smart India Hackathon</span>
+        <span>INNOVATION • COLLABORATION • NATIONAL IMPACT</span>
+    </div>
+
+    <header>
+        <div class="nav-inner">
+            <a href="#home" class="brand">
+                <div class="brand-mark" aria-hidden="true">🇮🇳</div>
+                <div>
+                    <div class="brand-name">SMART INDIA <span>HACKATHON</span></div>
+                    <div class="brand-subtitle">INNOVATE FOR A BETTER INDIA</div>
+                </div>
+            </a>
+
+            <button class="menu-button" id="menuButton" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
+            <nav id="nav">
+                <a href="#about">Overview</a>
+                <a href="#themes">Themes</a>
+                <a href="#process">How It Works</a>
+                <a href="#problems">Projects</a>
+                <a href="#contact" class="nav-button">Get Involved ↗</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-copy">
+                <div class="eyebrow">A NATIONAL INNOVATION MOVEMENT</div>
+
+                <h1>
+                    SMART INDIA<br>
+                    <span class="highlight">HACKATHON</span>
+                </h1>
+
+                <p>
+                    Empowering student innovators to turn bold ideas into practical
+                    solutions for real-world challenges. Think creatively, collaborate
+                    across disciplines, and build technology that makes a difference.
+                </p>
+
+                <div class="hero-buttons">
+                    <a class="btn btn-primary" href="#problems">Explore Innovation ↗</a>
+                    <a class="btn btn-outline" href="#about">Discover SIH ↓</a>
+                </div>
+
+                <div class="hero-footnote">IDEAS FOR INDIA. SOLUTIONS FOR TOMORROW.</div>
+            </div>
+
+            <div class="hero-visual" aria-label="Indian tricolour-inspired illustration">
+                <div class="visual-grid"></div>
+                <div class="india-map">
+                    <div class="chakra">✳</div>
+                </div>
+
+                <div class="visual-label top">
+                    <small class="orange">THINK</small>
+                    <strong>Ideas without limits</strong>
+                </div>
+
+                <div class="visual-label bottom">
+                    <small class="green">BUILD</small>
+                    <strong>Solutions with impact</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="content" id="about">
+            <div class="section-top">
+                <div class="section-index">01 / ABOUT THE HACKATHON</div>
+                <h2>From problem statements to <span style="color:var(--blue)">real solutions.</span></h2>
+                <p>
+                    Smart India Hackathon is a nationwide initiative that encourages
+                    students to work on pressing challenges through technology,
+                    creativity, teamwork, and product innovation.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <article class="info-card">
+                    <div class="icon">◎</div>
+                    <h3>Problem-driven innovation</h3>
+                    <p>
+                        Explore challenges that may come from government departments,
+                        public-sector organisations, industries, or open innovation ideas.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <div class="icon">⌘</div>
+                    <h3>Collaborative problem-solving</h3>
+                    <p>
+                        Bring together technical knowledge, design thinking, research,
+                        and teamwork to develop practical prototypes and solutions.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content" id="themes">
+            <div class="section-top">
+                <div class="section-index">02 / INNOVATION AREAS</div>
+                <h2>Explore the <span style="color:var(--blue)">themes.</span></h2>
+                <p>Examples of areas where technology and student innovation can contribute to national development.</p>
+            </div>
+
+            <div class="themes">
+                <article class="theme-card">
+                    <div class="theme-number">THEME 01</div>
+                    <div class="theme-illustration">⌘</div>
+                    <h3>AI & Smart Technology</h3>
+                    <p>Artificial intelligence, analytics, automation, and digital solutions.</p>
+                </article>
+
+                <article class="theme-card">
+                    <div class="theme-number">THEME 02</div>
+                    <div class="theme-illustration">♧</div>
+                    <h3>Environment & Sustainability</h3>
+                    <p>Resource conservation, clean technology, and sustainable development.</p>
+                </article>
+
+                <article class="theme-card">
+                    <div class="theme-number">THEME 03</div>
+                    <div class="theme-illustration">✚</div>
+                    <h3>Healthcare</h3>
+                    <p>Health technology, medical access, awareness, and well-being.</p>
+                </article>
+
+                <article class="theme-card">
+                    <div class="theme-number">THEME 04</div>
+                    <div class="theme-illustration">⌁</div>
+                    <h3>Smart Infrastructure</h3>
+                    <p>Mobility, logistics, connected systems, and better public services.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content" id="process">
+            <div class="section-top">
+                <div class="section-index">03 / THE JOURNEY</div>
+                <h2>How innovation <span style="color:var(--blue)">takes shape.</span></h2>
+                <p>A simplified overview of the journey from understanding a challenge to presenting a solution. Actual SIH processes and timelines depend on the current edition's guidelines.</p>
+            </div>
+
+            <div class="process">
+                <article class="step">
+                    <div class="step-number">01</div>
+                    <h3>Identify</h3>
+                    <p>Understand a problem statement and the people it affects.</p>
+                </article>
+
+                <article class="step">
+                    <div class="step-number">02</div>
+                    <h3>Ideate</h3>
+                    <p>Research the problem and develop a feasible solution with your team.</p>
+                </article>
+
+                <article class="step">
+                    <div class="step-number">03</div>
+                    <h3>Build</h3>
+                    <p>Develop a prototype, test assumptions, and improve your approach.</p>
+                </article>
+
+                <article class="step">
+                    <div class="step-number">04</div>
+                    <h3>Present</h3>
+                    <p>Explain the solution, its feasibility, and its potential impact.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content" id="problems">
+            <div class="section-top">
+                <div class="section-index">04 / PROJECT SHOWCASE</div>
+                <h2>Ideas that address <span style="color:var(--blue)">real needs.</span></h2>
+                <p>Browse sample concepts representing different innovation areas. These examples are illustrative, not official SIH problem statements or submissions.</p>
+            </div>
+
+            <div class="problem-toolbar">
+                <input id="searchProblems" type="search" placeholder="Search project ideas..." aria-label="Search project ideas">
+
+                <div class="filters">
+                    <button class="filter active" data-filter="All">All</button>
+                    <button class="filter" data-filter="AI">AI & Data</button>
+                    <button class="filter" data-filter="Health">Healthcare</button>
+                    <button class="filter" data-filter="Green">Environment</button>
+                </div>
+            </div>
+
+            <div class="problem-grid" id="problemGrid">
+                <article class="problem-card" data-category="AI">
+                    <span class="problem-tag">AI & DATA</span>
+                    <h3>Intelligent Data Insights</h3>
+                    <p>A sample concept for analysing complex data and presenting useful, accessible insights.</p>
+                    <a class="read-more" href="#contact">Discuss this idea ↗</a>
+                </article>
+
+                <article class="problem-card" data-category="Health">
+                    <span class="problem-tag">HEALTHCARE</span>
+                    <h3>Digital Health Compass</h3>
+                    <p>A sample concept for helping people navigate health information and everyday wellness resources.</p>
+                    <a class="read-more" href="#contact">Discuss this idea ↗</a>
+                </article>
+
+                <article class="problem-card" data-category="Green">
+                    <span class="problem-tag">SUSTAINABILITY</span>
+                    <h3>Smart Energy Monitor</h3>
+                    <p>A sample concept for tracking energy usage and identifying opportunities to reduce waste.</p>
+                    <a class="read-more" href="#contact">Discuss this idea ↗</a>
+                </article>
+            </div>
+
+            <div class="notice">
+                <strong>Note:</strong> For real participation, consult the current official SIH portal for valid problem statements, eligibility, registration instructions, and deadlines.
+                <a href="https://www.sih.gov.in/" target="_blank" rel="noopener noreferrer" style="font-weight:800;text-decoration:underline">Visit SIH website ↗</a>
+            </div>
+        </section>
+
+        <section class="content" id="team">
+            <div class="team-banner">
+                <div>
+                    <div class="section-index" style="color:#f6b66c">05 / STUDENT INNOVATION</div>
+                    <h2>One challenge.<br>Many perspectives.<br>Better possibilities.</h2>
+                    <p>
+                        Meaningful innovation grows through collaboration between
+                        students with different skills, experiences, and ideas.
+                    </p>
+                </div>
+
+                <div class="team-art" aria-label="Illustration representing student teamwork">
+                    <div class="team-person">✳</div>
+                    <div class="team-person">⌘</div>
+                    <div class="team-person">↗</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content" id="contact">
+            <div class="contact-grid">
+                <div class="contact-copy">
+                    <div class="section-index">06 / GET IN TOUCH</div>
+                    <h2 style="font-size:clamp(34px,4vw,45px);line-height:1.15">
+                        Have an idea<br>worth <span style="color:var(--blue)">building?</span>
+                    </h2>
+                    <p>
+                        Use this demo form to practise collecting project ideas
+                        and feedback from fellow students.
+                    </p>
+                </div>
+
+                <form id="contactForm">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" placeholder="Enter your name" required>
+
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="you@example.com" required>
+
+                    <label for="message">Idea or message</label>
+                    <textarea id="message" rows="4" placeholder="Describe your idea..." required></textarea>
+
+                    <button class="btn btn-primary" type="submit">Submit message ↗</button>
+                    <p id="formMessage" role="status"></p>
+                    <p class="demo-note">Demo only. The form does not send or store data on a server.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">SMART INDIA <span>HACKATHON</span></div>
+            <p>Student-made SIH-inspired website • Educational project</p>
+            <a href="#home">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="script7.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Planner | Class Countdown</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <header class="header">
+            <div class="brand">
+                <div class="brand-icon">🎓</div>
+                <div>
+                    <h1>Student Planner</h1>
+                    <p>CLASS COUNTDOWN</p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="header-clock">
+                    <span class="clock-dot"></span>
+                    <div>
+                        <p>LOCAL TIME</p>
+                        <h2 id="headerClock">00:00:00 AM</h2>
+                    </div>
+                </div>
+
+                <div class="date-badge">
+                    <span>▦</span>
+                    <span id="headerDate">Today's Schedule</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="main-grid">
+
+            <div class="countdown-panel">
+                <div class="panel-heading">
+                    <div class="subject-illustration" id="subjectIllustration">&lt;/&gt;</div>
+
+                    <div class="subject-heading">
+                        <p class="eyebrow">CURRENT CLASS</p>
+                        <h2 id="subjectName">Web Development</h2>
+                        <p id="classRoom">📍 Computer Lab · Room 204</p>
+                        <p id="classTime">◷ 10:00 AM – 11:00 AM</p>
+                    </div>
+
+                    <span id="classStatus" class="status upcoming">UPCOMING</span>
+                </div>
+
+                <div class="timer-panel">
+                    <p id="countdownLabel" class="timer-label">CLASS STARTS IN</p>
+
+                    <div class="countdown">
+                        <div class="time-box">
+                            <span id="hours">00</span>
+                            <small>HOURS</small>
+                        </div>
+
+                        <span class="separator">:</span>
+
+                        <div class="time-box">
+                            <span id="minutes">00</span>
+                            <small>MINUTES</small>
+                        </div>
+
+                        <span class="separator">:</span>
+
+                        <div class="time-box">
+                            <span id="seconds">10</span>
+                            <small>SECONDS</small>
+                        </div>
+                    </div>
+
+                    <div class="progress-track">
+                        <div id="progressBar" class="progress-bar"></div>
+                    </div>
+
+                    <p id="timerMessage" class="timer-message">
+                        Get ready! Your class will begin shortly.
+                    </p>
+
+                    <div class="timer-illustration">
+                        <span>✎</span>
+                        <span>✧</span>
+                        <span>▤</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="pauseButton" class="btn btn-primary">Ⅱ Pause</button>
+                    <button id="resetButton" class="btn btn-secondary">↻ Reset</button>
+                    <button id="nextButton" class="btn btn-outline">▶ Next Class</button>
+                </div>
+            </div>
+
+            <section class="schedule-panel">
+                <div class="schedule-heading">
+                    <div>
+                        <p class="eyebrow">YOUR DAY AT A GLANCE</p>
+                        <h2>Class Schedule</h2>
+                    </div>
+                    <span id="classCount" class="count-badge">4 Classes</span>
+                </div>
+
+                <div id="scheduleList" class="schedule-list"></div>
+
+                <div class="schedule-tip">
+                    <span>📌</span>
+                    <p>Select a class to view its countdown.</p>
+                </div>
+            </section>
+
+        </section>
+
+        <section class="bottom-grid">
+            <div class="clock-panel">
+                <div>
+                    <p class="eyebrow">YOUR LOCAL TIME</p>
+                    <h2 id="liveClock">00:00:00 AM</h2>
+                    <p id="currentDate">Loading date...</p>
+                </div>
+
+                <div class="clock-illustration">
+                    <div class="mini-paper">
+                        <span>STUDY PLAN</span>
+                        <p>✓ Read notes</p>
+                        <p>✓ Attend class</p>
+                        <p>✓ Revise topics</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reminder-panel">
+                <div class="quote-mark">“</div>
+                <div>
+                    <p class="eyebrow">A LITTLE REMINDER</p>
+                    <h2>Small steps today lead to big achievements tomorrow.</h2>
+                    <p class="reminder-caption">Keep learning, keep growing.</p>
+                </div>
+                <div class="plant-illustration">🪴</div>
+            </div>
+        </section>
+
+        <footer>
+            Built with JavaScript Timers <span>•</span> ES6 Modules
+        </footer>
+
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

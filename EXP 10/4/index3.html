@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My City - Nagpur</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #f4f6fb;
+            font-family: Arial, sans-serif;
+            color: #27364b;
+        }
+
+        .header {
+            background-color: #e8edfa;
+            text-align: center;
+            padding: 45px 20px;
+            border-bottom: 1px solid #d5ddef;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #315aa8;
+            font-family: Georgia, serif;
+            font-size: 58px;
+            letter-spacing: 6px;
+            cursor: pointer;
+        }
+
+        .header p {
+            margin: 12px 0 0;
+            color: #65728a;
+            font-size: 17px;
+        }
+
+        .container {
+            width: 88%;
+            max-width: 950px;
+            margin: 35px auto;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .intro h2 {
+            color: #3d5685;
+            font-family: Georgia, serif;
+            margin-bottom: 8px;
+        }
+
+        .intro p {
+            color: #78849a;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        #searchInput {
+            width: 100%;
+            max-width: 500px;
+            padding: 13px 18px;
+            border: 1px solid #ccd5e5;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            background-color: white;
+        }
+
+        #searchInput:focus {
+            border-color: #6686c4;
+        }
+
+        .landmarks {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .landmark {
+            padding: 25px;
+            min-height: 190px;
+            background-color: white;
+            border-radius: 12px;
+            border: 1px solid #d7ddea;
+            box-shadow: 0 4px 12px rgba(54, 70, 100, 0.08);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .landmark:hover {
+            box-shadow: 0 8px 20px rgba(54, 70, 100, 0.14);
+        }
+
+        .landmark h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .landmark p {
+            color: #68758a;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .futala {
+            background-color: #f3f7ff;
+            border-color: #c8d7f2;
+        }
+
+        .futala h3 {
+            color: #4169a8;
+            font-family: Georgia, serif;
+            font-style: italic;
+        }
+
+        .zero-mile {
+            background-color: #f3faf6;
+            border-color: #c9dfd5;
+        }
+
+        .zero-mile h3 {
+            color: #39745a;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .ambazari {
+            background-color: #fcf7f1;
+            border-color: #e4d4c4;
+        }
+
+        .ambazari h3 {
+            color: #9a6b3f;
+            font-family: "Courier New", monospace;
+            font-style: italic;
+        }
+
+        .sitabuldi {
+            background-color: #f8f4fc;
+            border-color: #d8cce5;
+        }
+
+        .sitabuldi h3 {
+            color: #70518e;
+            font-family: "Times New Roman", serif;
+            font-weight: bold;
+        }
+
+        .college {
+            grid-column: 1 / -1;
+            text-align: center;
+            background-color: #fff6f9;
+            border-color: #e5c9d5;
+        }
+
+        .college h3 {
+            color: #a34f6d;
+            font-family: Verdana, sans-serif;
+        }
+
+        .college p {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .blink {
+            animation: blink 1.2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 45% {
+                opacity: 1;
+            }
+
+            50%, 100% {
+                opacity: 0.3;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #536fa9;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #405b91;
+        }
+
+        #message {
+            text-align: center;
+            color: #536fa9;
+            font-weight: bold;
+            min-height: 25px;
+        }
+
+        .scroll-box {
+            margin-top: 25px;
+            overflow: hidden;
+            background-color: #e8edfa;
+            border: 1px solid #d2dbee;
+            border-radius: 10px;
+            padding: 14px 0;
+            white-space: nowrap;
+        }
+
+        .scroll-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll 15s linear infinite;
+            color: #45629a;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #8993a6;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .header h1 {
+                font-size: 42px;
+            }
+
+            .landmarks {
+                grid-template-columns: 1fr;
+            }
+
+            .college {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1 id="cityTitle">NAGPUR</h1>
+        <p>The Orange City of Maharashtra</p>
+    </div>
+
+    <div class="container">
+
+        <div class="intro">
+            <h2>Landmarks of My City</h2>
+            <p>Explore some of the well-known places in Nagpur.</p>
+        </div>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for a landmark..."
+            >
+        </div>
+
+        <div class="landmarks">
+
+            <div class="landmark futala" data-name="Futala Lake">
+                <h3>Futala Lake</h3>
+                <p>
+                    A beautiful and popular lake known for its peaceful
+                    surroundings and evening views.
+                </p>
+            </div>
+
+            <div class="landmark zero-mile" data-name="Zero Mile Stone">
+                <h3>Zero Mile Stone</h3>
+                <p>
+                    A historic landmark located in the heart of Nagpur
+                    and an important symbol of the city.
+                </p>
+            </div>
+
+            <div class="landmark ambazari" data-name="Ambazari Lake">
+                <h3>Ambazari Lake</h3>
+                <p>
+                    One of Nagpur's well-known lakes, surrounded by
+                    greenery and recreational spaces.
+                </p>
+            </div>
+
+            <div class="landmark sitabuldi" data-name="Sitabuldi Fort">
+                <h3>Sitabuldi Fort</h3>
+                <p>
+                    A historic fort situated in central Nagpur,
+                    representing an important part of the city's history.
+                </p>
+            </div>
+
+            <div
+                class="landmark college blink"
+                data-name="Symbiosis Institute of Technology"
+            >
+                <h3>Symbiosis Institute of Technology, Nagpur</h3>
+                <p>
+                    A prominent educational institution and my college
+                    in Nagpur.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <button id="showButton">Show All Landmarks</button>
+            <button id="hideButton">Hide Descriptions</button>
+        </div>
+
+        <div id="message"></div>
+
+        <div class="scroll-box">
+            <div class="scroll-text">
+                ✦ Welcome to Nagpur — Explore the culture, beauty and landmarks of the Orange City! ✦
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        My City • Nagpur
+    </footer>
+
+    <script src="script3.js"></script>
+
+</body>
+</html>

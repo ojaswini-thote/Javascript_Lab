@@ -1,0 +1,20 @@
+[
+    {
+        "id": 101,
+        "name": "Aarav Sharma",
+        "department": "Computer Science",
+        "marks": 85
+    },
+    {
+        "id": 102,
+        "name": "Priya Patil",
+        "department": "Information Technology",
+        "marks": 91
+    },
+    {
+        "id": 103,
+        "name": "Rohan Mehta",
+        "department": "Electronics",
+        "marks": 78
+    }
+]

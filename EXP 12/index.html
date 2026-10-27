@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderly | Your Trip Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <header class="topbar">
+        <a href="#" class="logo">
+            <span class="logo-icon">✈</span>
+            <span>wanderly<small>YOUR LITTLE ESCAPE PLANNER</small></span>
+        </a>
+
+        <div class="top-right">
+            <div class="live-clock">
+                <span class="live-dot"></span>
+                <span id="clock">00:00:00</span>
+            </div>
+            <span class="trip-label">✦ MADE FOR YOUR NEXT ADVENTURE</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
+                <h1>Somewhere<br>beautiful <span>awaits.</span></h1>
+                <p class="hero-description">
+                    Collect places, plan little adventures, and turn
+                    your travel dreams into a trip worth remembering.
+                </p>
+                <button id="exploreButton" class="button button-dark">
+                    Explore destinations <span>↘</span>
+                </button>
+
+                <div class="hero-note">
+                    <span class="avatar-stack">🌷 🏔️ 🌊</span>
+                    <span>Little plans. Big memories.</span>
+                </div>
+            </div>
+
+            <div class="hero-art">
+                <div class="sun"></div>
+                <div class="cloud cloud-one">☁</div>
+                <div class="cloud cloud-two">☁</div>
+                <div class="bird bird-one">⌁</div>
+                <div class="mountain mountain-back"></div>
+                <div class="mountain mountain-front"></div>
+                <div class="hero-lake"></div>
+                <div class="hero-tree tree-one">♣</div>
+                <div class="hero-tree tree-two">♣</div>
+                <div class="hero-sticker">TAKE<br>THE<br>SCENIC<br>ROUTE ✿</div>
+                <div class="hero-caption">Your story, somewhere new.</div>
+            </div>
+        </section>
+
+        <section class="stats-row">
+            <div class="stat-card">
+                <span class="stat-icon lavender-icon">✈</span>
+                <div><p>PLACES TO EXPLORE</p><h2 id="destinationCount">0</h2></div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon peach-icon">♡</span>
+                <div><p>YOUR ITINERARY</p><h2 id="itineraryCount">0 stops</h2></div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon green-icon">₹</span>
+                <div><p>ESTIMATED BUDGET</p><h2 id="budgetTotal">₹0</h2></div>
+            </div>
+        </section>
+
+        <section id="destinationsSection" class="section-block">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">PICK YOUR POSTCARD</p>
+                    <h2>Where to next?</h2>
+                    <p class="section-subtitle">A few places we'd love you to discover.</p>
+                </div>
+                <span class="handwritten">the world is yours ✿</span>
+            </div>
+
+            <div class="filter-row">
+                <input id="searchInput" type="search" placeholder="⌕  Search a destination...">
+
+                <select id="categoryFilter">
+                    <option value="All">All places</option>
+                    <option value="Mountains">Mountains</option>
+                    <option value="Beach">Beach</option>
+                    <option value="City">City</option>
+                    <option value="Nature">Nature</option>
+                </select>
+
+                <button id="loadButton" class="button button-outline">
+                    ↻ Load destinations
+                </button>
+            </div>
+
+            <p id="destinationMessage" class="feedback" role="status"></p>
+            <div id="destinationGrid" class="destination-grid"></div>
+        </section>
+
+        <section class="planner-section">
+            <div class="planner-heading">
+                <div>
+                    <p class="eyebrow">YOUR LITTLE ADVENTURE</p>
+                    <h2>Build your itinerary</h2>
+                    <p class="section-subtitle">Your trip, your pace, your memories.</p>
+                </div>
+                <div class="passport-stamp">TRIP<br>JOURNAL<br>✦ 2026 ✦</div>
+            </div>
+
+            <div class="planner-grid">
+                <div class="itinerary-panel">
+                    <div class="panel-title">
+                        <h3>✎ Your travel notes</h3>
+                        <span id="stopCountBadge" class="pill">0 stops</span>
+                    </div>
+
+                    <div class="day-tabs">
+                        <button class="day-tab active" data-day="1">Day 01</button>
+                        <button class="day-tab" data-day="2">Day 02</button>
+                        <button class="day-tab" data-day="3">Day 03</button>
+                    </div>
+
+                    <form id="activityForm" class="activity-form">
+                        <label for="activityInput">Add an activity to this day</label>
+                        <div class="activity-input-row">
+                            <input id="activityInput" type="text"
+                                placeholder="e.g. Watch the sunset" maxlength="100" required>
+                            <button class="button button-dark" type="submit">Add +</button>
+                        </div>
+                    </form>
+
+                    <div id="itineraryList" class="itinerary-list"></div>
+
+                    <div id="emptyItinerary" class="empty-itinerary">
+                        <span>🧳</span>
+                        <h3>Your adventure starts here</h3>
+                        <p>Add a destination above, then create activities for each day.</p>
+                    </div>
+
+                    <div class="planner-actions">
+                        <button id="clearCompletedButton" class="button button-outline">
+                            Clear completed
+                        </button>
+                        <button id="clearTripButton" class="button button-soft">
+                            Clear trip
+                        </button>
+                    </div>
+                </div>
+
+                <aside class="trip-summary">
+                    <div class="summary-art">
+                        <div class="summary-sun"></div>
+                        <span class="summary-cloud">☁</span>
+                        <div class="summary-hill hill-one"></div>
+                        <div class="summary-hill hill-two"></div>
+                        <span class="summary-plane">✈</span>
+                        <span class="summary-flower">✿</span>
+                    </div>
+
+                    <p class="eyebrow">THE LITTLE DETAILS</p>
+                    <h3>Your trip at a glance</h3>
+
+                    <div class="summary-line">
+                        <span>Places planned</span>
+                        <strong id="summaryPlaces">0</strong>
+                    </div>
+                    <div class="summary-line">
+                        <span>Activities</span>
+                        <strong id="summaryActivities">0</strong>
+                    </div>
+                    <div class="summary-line">
+                        <span>Completed</span>
+                        <strong id="summaryCompleted">0%</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <div id="tripProgress" class="progress-fill"></div>
+                    </div>
+
+                    <div class="budget-note">
+                        <span>🌷</span>
+                        <p>A little reminder: the best memories aren't always the most expensive.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <footer>
+            <span>✿</span> Made for curious souls
+            <span class="footer-divider">•</span>
+            JavaScript · jQuery · AJAX · Web Storage
+        </footer>
+
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
